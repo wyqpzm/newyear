@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,user-scalable=no" name="viewport"> 
+    <title>新年福签</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/screen.css">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+    <div style="display:none">
+         <img class="happy" src="img/home_fu@3x.png">
+    </div>
+    <div id="card" >
+        <div id="card_holder">
+            <img id="card_text" alt="">
+            <ul id="card_ul">
+            </ul>
+            <p id="card_intro"></p>
+        </div>
+        <div id="card_top">
+            <img src="img/slice_tp_text@3x.png">
+        </div>
+        <div id="card_bottom">
+            <img src="img/slice_dw_text@3x.png">
+        </div>
+    </div>
+    <div id="empty"></div>
+    <div id="index">
+            <div id="logo">
+                <img src="img/home_cswadi@3x.png" alt="cswadi">
+            </div>
+            <div id="dec-tree">
+                <img src="img/dec-tree.png">
+            </div>
+            <div id="happy">
+                <img class="happy" src="img/home_fu@3x.png">
+                <img class="text" src="img/home_2018@3x.png">
+                <img class="qian" src="img/home_qian@3x.png">
+            </div>
+            <div id="text">
+                <img class="pointer" src="img/pointer.png">
+                <img class="text" src="img/text.png">
+            </div>
+            <p id="tips">获取中建西南院新年福签</p>
+        </div>
+    <script type="text/javascript">
+    document.setTitle = function(t) {
+        document.title = t;
+        var i = document.createElement('iframe');
+        i.src = '//m.baidu.com/favicon.ico';
+        i.style.display = 'none';
+        i.onload = function() {
+          setTimeout(function(){
+            i.remove();
+          }, 9)
+        }
+        document.body.appendChild(i);
+      }
+      
+        window.onload = function () {
+            var btn = document.getElementById("happy");
+            var index = document.getElementById("index");
+            var empty = document.getElementById("empty");
+            var card = document.getElementById("card");
+            var holder = document.getElementById("card_holder");
+            var holder_ul = document.getElementById("card_ul");
+            var text = document.getElementById("card_text");
+            var intro = document.getElementById("card_intro");
+            var top = document.getElementById("card_top");
+            var bottom = document.getElementById("card_bottom");
+            btn.onclick = function () {
+                index.style.display = "none";
+                empty.style.display = "none";
+                top.className = "slideIndown";
+                text.className = "slideInLeft";
+                var lines = holder.getElementsByTagName("li");
+                for(var i =0;i<lines.length;i++){
+                    (function(index){
+                        console.log(index);
+                        setTimeout(function(){
+                            var line = lines[index];
+                            line.style.display = "block";
+                            line.className = "slideInLeft";
+                        },500);
+                    })(i)
+                    
+                }
+                document.setTitle("我在中建西南院抽到的福签是："+data.title);
+                // wxConfig();
+            };
+            function getInfo(){
+                var list = [{
+                index: 1,
+                name: "青白江区文化体育中心",
+                title: "怎么吃都不长胖",
+                brief: ["爱运动的人，","身体都不会太胖，","#2018，迈开腿，管住嘴！#"]
+                },{
+                index: 2,
+                name: "中国西部博览城",
+                title: "燃",
+                brief: ["大V展翅，","#2018小宇宙全面爆发啦！#"]
+                },{
+                index: 3,
+                name: "保利林芝鲁朗精品别墅型度假酒店项目",
+                title:"诗与远方",
+                brief:["愿你去往之地皆为热土，","愿你将遇之人皆为挚友，","#2018，许自己一段旅行吧！#"]
+                },{
+                index: 4,
+                name: "ICON·云端",
+                title:"颜值巅峰",
+                brief:["帅到掉渣，","貌美如花，","#2018，我最美！#"]
+                },{
+                index: 5,
+                name: "四川省图书馆",
+                title:"通达",
+                brief:["愿你常翻书卷，将心性雕琢，","寻得一份耐人的旷达，","向生活许些美好，","#2018，悦读悦精彩！#"],
+                },{
+                index: 6,
+                name: "四川大学喜马拉雅文化及宗教研究中心",
+                title:"宁静",
+                brief:["愿你在闹市中寻得一方净土，","度日如诗，","#2018，淡定于心，沉淀自我！#"],
+                },{
+                index: 7,
+                name: "华西第二医院锦江院区",
+                title:"兴旺",
+                brief:["愿单身的朋友都脱单，已婚朋友早生贵子；","愿企业兴旺发达，蒸蒸日上；","#2018，旺旺旺！#"]
+                },{
+                index: 8,
+                name: "达州嘉祥外国语学校建设项目",
+                title:"青春",
+                brief:["青春无关年华，","它是你不认怂的每时每刻，","#2018，重回18！#"]
+                },{
+                index: 9,
+                name: "重庆机场T3航站楼",
+                title:"一飞冲天",
+                brief:["乘着梦想的翅膀，","飞得更高，","#2018，一帆风顺！#"]
+                },{
+                index: 10,
+                name: "招商银行后台服务中心",
+                title:"壕",
+                brief:["财源滚滚，","有钱任性，","#2018，闷声发大财！#"]
+                },{
+                index: 11,
+                name: "天府中央公园",
+                title:"悦心",
+                brief:["面朝阳光","春暖花开","#2018，事事顺心！#"]
+                }];
+                var random = parseInt(Math.random()*10);
+                window.data = list[random];
+                console.log(random);
+                console.log(data);
+                holder.style.height = (window.innerHeight - 90)+"px";
+                holder.style.backgroundImage = "url('img/"+data.index+"_bg@3x.png')";
+                text.src = "img/"+data.index+"_text.svg";
+                intro.innerHTML = data.name;
+                for(var i = 0;i<data.brief.length;i++){
+                    var el = document.createElement("li");
+                    el.innerHTML = data.brief[i];
+                    holder_ul.appendChild(el);
+                }
+            }
+            getInfo();
+            /* function getInfo(){
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/card', true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded;charset=UTF-8");
+                xhr.responseType = 'json';
+                xhr.onload = function () {
+                    if(xhr.status == 200){
+                        console.log(xhr.response);
+                        window.data = xhr.response;
+                        holder.style.backgroundImage = "url('img/"+data.index+"_bg@3x.png')";
+                        text.src = "img/"+data.index+"_text.svg";
+                        intro.innerHTML = data.name;
+                        for(var i = 0;i<data.brief.length;i++){
+                            var el = document.createElement("li");
+                            el.innerHTML = data.brief[i];
+                            holder_ul.appendChild(el);
+                        }
+
+                    }else{
+                        console.error("The request status not is 200.");
+                    }
+                }
+                xhr.send();
+            }; */
+            var wxConfig = function(){
+                var url = location.href;
+                console.log(url);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/wx', true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded;charset=UTF-8");
+                xhr.responseType = 'json';
+                xhr.onload = function () {
+                    if(xhr.status == 200){
+                        console.log(xhr.response);
+                        var data = xhr.response;
+                        wx.config({
+                            debug: true,
+                            appId: "wxf2083e95eed07c8a",
+                            timestamp: data.timestamp,
+                            nonceStr: data.nonceStr,
+                            signature: data.signature,
+                            jsApiList: ['checkJsApi','onMenuShareTimeline']
+                        });
+                        wx.ready(function() {
+                            wx.checkJsApi({
+                                jsApiList: [
+                                    'getNetworkType',
+                                    'previewImage'
+                                ],
+                                success: function(res) {
+                                    console.log(JSON.stringify(res));
+                                }
+                            });
+
+                            //分享到朋友圈
+                            wx.onMenuShareTimeline({
+                                title: '新年福签',
+                                desc: '我抽取到中建西南院的新年福签是'+data.title,
+                                link: url,
+                                imgUrl: 'img/home_fu@3x.png'
+                            });
+
+                        });
+                    }else{
+                        console.error("The request status not is 200.");
+                    }
+                }
+                xhr.send("url="+url);
+                    
+            };
+        }
+    </script>
+</body>
+</html>

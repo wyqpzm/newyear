@@ -1,0 +1,267 @@
+html,body, img, input, label, legend, li, mark, ol,div,p,section, span, strong, textarea, time, ul, var input,em{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: "微软雅黑","宋体";
+    font-size: 16px;
+    font-style: normal;
+    color: #333;
+    list-style: none;
+    box-sizing: border-box;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+}
+#index{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../img/home_bg@3x.png');
+}
+#empty{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #9F2921;
+}
+#dec-tree img{
+    position: absolute;
+    top: 0;
+    right: -3px;
+    margin-top: 30px;
+    width: 80%;
+    transform-origin: right top;
+    transform: rotate(2deg);
+    animation: swing 5s ease infinite;
+    z-index: 5;
+}
+#logo{
+    position: fixed;
+    left: 11px;
+    top: 13px;
+}
+#logo img{
+    width: 100px;
+}
+#happy{
+    width: 80%;
+    margin: 40% auto 0;
+    position: relative;
+}
+#happy .happy{
+    width: 100%;
+}
+#happy .text{
+    width: 25%;
+    position: absolute;
+    top: 84px;
+    right: -15px;
+    opacity: .7;
+}
+#happy .qian{
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -40px;
+}
+#text{
+    position: relative;
+    width: 160px;
+    margin: 10px auto 0;
+}
+#text .pointer{
+    position: absolute;
+    top: -26px;
+    right: -24px;
+    width: 36px;
+    animation: pointing 2s linear infinite;
+}
+#text .text{
+    margin-top: 10px;
+    width: 160px;
+}
+#tips{
+    text-align: center;
+    color: #fff;
+    margin-top: 6px;
+}
+#card{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+#card_holder{
+    background-image: url('../img/1_bg@3x.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20% 0 0 50px;
+    position: relative
+}
+#card_holder li{
+    display: none;
+}
+#card_holder img{
+    height: 20%;
+    max-width: 70%;
+}
+#card_holder p{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: #edb45a;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #5b3800;
+}
+#card_top{
+    text-align: center;
+    height: 43px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../img/slice_tp@3x.png');
+    background-repeat: repeat-x;
+    background-size: auto 43px;
+}
+#card_top img{
+    width: 97px;
+}
+#card_bottom{
+    text-align: center;
+    height: 90px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../img/slice_dw@3x.png');
+    background-repeat: repeat-x;
+    background-size: auto 90px;
+}
+#card_bottom img{
+    width: 254px;
+}
+
+@-webkit-keyframes swing {
+    0%,100%{
+        transform: rotate(3deg);
+    }
+    50%{
+        transform: rotate(-2deg);
+    }
+}
+@keyframes swing {
+    0%,100%{
+        transform: rotate(3deg);
+     }
+    50%{
+        transform: rotate(-2deg);
+    }
+}
+@-webkit-keyframes pointing {
+    0%,100%{
+        transform: translate(0, 0);
+    }
+    50%{
+        transform: translate(-7px,-7px);
+    }
+}
+@-webkit-keyframes zoomIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+.zoomIn{
+    animation: zoomIn 2s;
+}
+
+@-webkit-keyframes slideInLeft {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+.slideIndown{
+    animation: slideInDown 1s;
+}
+.slideInLeft {
+    animation: slideInLeft 1s ease-in-out 0s;
+}
+.slideInLeft_1 {
+    animation: slideInLeft 1s ease-in-out .5s;
+}
+.slideInLeft_2 {
+    animation: slideInLeft 1s ease-in-out 1s;
+}
+.slideInLeft_3 {
+    animation: slideInLeft 1s ease-in-out 1.5s;
+}
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#card .fadeIn {
+    animation: fadeIn 4s;
+    opacity: 1;
+}

@@ -1,0 +1,656 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'i', '-g', 'now' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData now
+8 silly fetchNamedPackageData now
+9 silly mapToRegistry name now
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'now',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'now',
+12 silly mapToRegistry   name: 'now',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/now
+14 verbose request uri https://registry.npmjs.org/now
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 02:03:57
+17 verbose request id 49bcc1b3ce2a87dd
+18 verbose etag W/"58d129fe-48ee2"
+19 verbose lastModified Tue, 21 Mar 2017 13:26:22 GMT
+20 http request GET https://registry.npmjs.org/now
+21 http 200 https://registry.npmjs.org/now
+22 verbose headers { 'content-type': 'application/json; charset=UTF-8',
+22 verbose headers   server: 'UploadServer',
+22 verbose headers   'cache-control': 'max-age=300',
+22 verbose headers   'last-modified': 'Sat, 20 Jan 2018 19:34:59 GMT',
+22 verbose headers   etag: '"5a6399e3-c9cd2"',
+22 verbose headers   'content-encoding': 'gzip',
+22 verbose headers   'content-length': '56302',
+22 verbose headers   'accept-ranges': 'bytes',
+22 verbose headers   date: 'Wed, 24 Jan 2018 18:03:58 GMT',
+22 verbose headers   via: '1.1 varnish',
+22 verbose headers   age: '0',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   'x-served-by': 'cache-hnd18720-HND',
+22 verbose headers   'x-cache': 'MISS',
+22 verbose headers   'x-cache-hits': '0',
+22 verbose headers   'x-timer': 'S1516817038.472770,VS0,VE463',
+22 verbose headers   vary: 'Accept-Encoding, Accept' }
+23 silly get cb [ 200,
+23 silly get   { 'content-type': 'application/json; charset=UTF-8',
+23 silly get     server: 'UploadServer',
+23 silly get     'cache-control': 'max-age=300',
+23 silly get     'last-modified': 'Sat, 20 Jan 2018 19:34:59 GMT',
+23 silly get     etag: '"5a6399e3-c9cd2"',
+23 silly get     'content-encoding': 'gzip',
+23 silly get     'content-length': '56302',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     date: 'Wed, 24 Jan 2018 18:03:58 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     age: '0',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-hnd18720-HND',
+23 silly get     'x-cache': 'MISS',
+23 silly get     'x-cache-hits': '0',
+23 silly get     'x-timer': 'S1516817038.472770,VS0,VE463',
+23 silly get     vary: 'Accept-Encoding, Accept' } ]
+24 verbose get saving now to /Users/wing/.npm/registry.npmjs.org/now/.cache.json
+25 verbose correctMkdir /Users/wing/.npm correctMkdir not in flight; initializing
+26 silly install normalizeTree
+27 silly loadCurrentTree Finishing
+28 silly loadIdealTree Starting
+29 silly install loadIdealTree
+30 silly cloneCurrentTree Starting
+31 silly install cloneCurrentTreeToIdealTree
+32 silly cloneCurrentTree Finishing
+33 silly loadShrinkwrap Starting
+34 silly install loadShrinkwrap
+35 silly loadShrinkwrap Finishing
+36 silly loadAllDepsIntoIdealTree Starting
+37 silly install loadAllDepsIntoIdealTree
+38 silly resolveWithNewModule now@9.2.7 checking installable status
+39 silly cache add args [ 'now', null ]
+40 verbose cache add spec now
+41 silly cache add parsed spec Result {
+41 silly cache add   raw: 'now',
+41 silly cache add   scope: null,
+41 silly cache add   escapedName: 'now',
+41 silly cache add   name: 'now',
+41 silly cache add   rawSpec: '',
+41 silly cache add   spec: 'latest',
+41 silly cache add   type: 'tag' }
+42 silly addNamed now@latest
+43 verbose addNamed "latest" is being treated as a dist-tag for now
+44 info addNameTag [ 'now', 'latest' ]
+45 silly mapToRegistry name now
+46 silly mapToRegistry using default registry
+47 silly mapToRegistry registry https://registry.npmjs.org/
+48 silly mapToRegistry data Result {
+48 silly mapToRegistry   raw: 'now',
+48 silly mapToRegistry   scope: null,
+48 silly mapToRegistry   escapedName: 'now',
+48 silly mapToRegistry   name: 'now',
+48 silly mapToRegistry   rawSpec: '',
+48 silly mapToRegistry   spec: 'latest',
+48 silly mapToRegistry   type: 'tag' }
+49 silly mapToRegistry uri https://registry.npmjs.org/now
+50 verbose addNameTag registry:https://registry.npmjs.org/now not in flight; fetching
+51 verbose get https://registry.npmjs.org/now not expired, no request
+52 silly addNameTag next cb for now with tag latest
+53 silly addNamed now@9.2.7
+54 verbose addNamed "9.2.7" is a plain semver version for now
+55 silly mapToRegistry name now
+56 silly mapToRegistry using default registry
+57 silly mapToRegistry registry https://registry.npmjs.org/
+58 silly mapToRegistry data Result {
+58 silly mapToRegistry   raw: 'now',
+58 silly mapToRegistry   scope: null,
+58 silly mapToRegistry   escapedName: 'now',
+58 silly mapToRegistry   name: 'now',
+58 silly mapToRegistry   rawSpec: '',
+58 silly mapToRegistry   spec: 'latest',
+58 silly mapToRegistry   type: 'tag' }
+59 silly mapToRegistry uri https://registry.npmjs.org/now
+60 verbose addRemoteTarball https://registry.npmjs.org/now/-/now-9.2.7.tgz not in flight; adding
+61 verbose addRemoteTarball [ 'https://registry.npmjs.org/now/-/now-9.2.7.tgz',
+61 verbose addRemoteTarball   '46e68cb606feb9c80d9d6b380fcddfaaa093c3a3' ]
+62 info retry fetch attempt 1 at 02:04:02
+63 info attempt registry request try #1 at 02:04:02
+64 http fetch GET https://registry.npmjs.org/now/-/now-9.2.7.tgz
+65 http fetch 200 https://registry.npmjs.org/now/-/now-9.2.7.tgz
+66 silly fetchAndShaCheck shasum 46e68cb606feb9c80d9d6b380fcddfaaa093c3a3
+67 verbose addTmpTarball /var/folders/4x/vmhttf5j1xdcby55lqtthjfc0000gn/T/npm-47131-5f3aafa9/registry.npmjs.org/now/-/now-9.2.7.tgz not in flight; adding
+68 verbose addTmpTarball already have metadata; skipping unpack for now@9.2.7
+69 verbose correctMkdir /Users/wing/.npm correctMkdir not in flight; initializing
+70 silly cache afterAdd now@9.2.7
+71 verbose afterAdd /Users/wing/.npm/now/9.2.7/package/package.json not in flight; writing
+72 verbose correctMkdir /Users/wing/.npm correctMkdir not in flight; initializing
+73 verbose afterAdd /Users/wing/.npm/now/9.2.7/package/package.json written
+74 silly loadAllDepsIntoIdealTree Finishing
+75 silly loadIdealTree Finishing
+76 silly currentTree lib
+76 silly currentTree └─┬ now@4.10.2
+76 silly currentTree   ├── @google/maps@0.3.1
+76 silly currentTree   ├── @types/fs-extra@0.0.37
+76 silly currentTree   ├── @types/mz@0.0.30
+76 silly currentTree   ├── @types/node@7.0.12
+76 silly currentTree   ├── after@0.8.2
+76 silly currentTree   ├─┬ ansi-align@1.1.0
+76 silly currentTree   │ ├── is-fullwidth-code-point@1.0.0
+76 silly currentTree   │ └── string-width@1.0.2
+76 silly currentTree   ├── ansi-escapes@1.4.0
+76 silly currentTree   ├── ansi-regex@2.1.1
+76 silly currentTree   ├── ansi-styles@2.2.1
+76 silly currentTree   ├── any-promise@1.3.0
+76 silly currentTree   ├── arr-flatten@1.0.1
+76 silly currentTree   ├── array-unique@0.3.2
+76 silly currentTree   ├── arraybuffer.slice@0.0.6
+76 silly currentTree   ├── async-retry@0.3.0
+76 silly currentTree   ├── async-to-gen@1.3.2
+76 silly currentTree   ├── babylon@6.16.1
+76 silly currentTree   ├── backo2@1.0.2
+76 silly currentTree   ├── balanced-match@0.4.2
+76 silly currentTree   ├── base64-arraybuffer@0.1.5
+76 silly currentTree   ├── base64-js@0.0.8
+76 silly currentTree   ├── better-assert@1.0.2
+76 silly currentTree   ├── bl@1.2.0
+76 silly currentTree   ├── blob@0.0.4
+76 silly currentTree   ├── bluebird@2.11.0
+76 silly currentTree   ├── boxen@1.0.0
+76 silly currentTree   ├── brace-expansion@1.1.6
+76 silly currentTree   ├── buffer-crc32@0.2.13
+76 silly currentTree   ├── buffer-shims@1.0.0
+76 silly currentTree   ├── buffer@3.6.0
+76 silly currentTree   ├── bytes@2.4.0
+76 silly currentTree   ├── callsite@1.0.0
+76 silly currentTree   ├── camelcase@4.0.0
+76 silly currentTree   ├── capture-stack-trace@1.0.0
+76 silly currentTree   ├── caw@2.0.0
+76 silly currentTree   ├── chalk@1.1.3
+76 silly currentTree   ├── cli-boxes@1.0.0
+76 silly currentTree   ├── cli-cursor@2.1.0
+76 silly currentTree   ├── cli-spinners@1.0.0
+76 silly currentTree   ├── cli-width@2.1.0
+76 silly currentTree   ├── code-point-at@1.1.0
+76 silly currentTree   ├── commander@2.8.1
+76 silly currentTree   ├── component-bind@1.0.0
+76 silly currentTree   ├── component-emitter@1.2.1
+76 silly currentTree   ├── component-inherit@0.0.3
+76 silly currentTree   ├── concat-map@0.0.1
+76 silly currentTree   ├── configstore@3.0.0
+76 silly currentTree   ├── copy-paste@1.3.0
+76 silly currentTree   ├── core-util-is@1.0.2
+76 silly currentTree   ├── create-error-class@3.0.2
+76 silly currentTree   ├── credit-card@3.0.1
+76 silly currentTree   ├── cross-spawn-async@2.2.5
+76 silly currentTree   ├── cross-spawn@5.1.0
+76 silly currentTree   ├── crypto-random-string@1.0.0
+76 silly currentTree   ├─┬ debug@2.3.3
+76 silly currentTree   │ └── ms@0.7.2
+76 silly currentTree   ├── decompress-tar@4.1.0
+76 silly currentTree   ├── decompress-tarbz2@4.1.0
+76 silly currentTree   ├── decompress-targz@4.0.0
+76 silly currentTree   ├─┬ decompress-unzip@4.0.1
+76 silly currentTree   │ └── get-stream@2.3.1
+76 silly currentTree   ├── decompress@4.0.0
+76 silly currentTree   ├── deep-extend@0.4.1
+76 silly currentTree   ├── docker-file-parser@1.0.1
+76 silly currentTree   ├── dot-prop@4.1.1
+76 silly currentTree   ├── dotenv@4.0.0
+76 silly currentTree   ├── download@5.0.3
+76 silly currentTree   ├── duplexer3@0.1.4
+76 silly currentTree   ├── email-prompt@0.2.0
+76 silly currentTree   ├── email-validator@1.0.7
+76 silly currentTree   ├── encoding@0.1.12
+76 silly currentTree   ├── end-of-stream@1.4.0
+76 silly currentTree   ├── engine.io-client@1.8.3
+76 silly currentTree   ├── engine.io-parser@1.3.2
+76 silly currentTree   ├── escape-string-regexp@1.0.5
+76 silly currentTree   ├── execa@0.4.0
+76 silly currentTree   ├── external-editor@2.0.1
+76 silly currentTree   ├── fd-slicer@1.0.1
+76 silly currentTree   ├── figures@2.0.0
+76 silly currentTree   ├── file-type@3.9.0
+76 silly currentTree   ├── filename-reserved-regex@2.0.0
+76 silly currentTree   ├── filenamify@2.0.0
+76 silly currentTree   ├── fs-extra@2.1.2
+76 silly currentTree   ├── fs-promise@2.0.0
+76 silly currentTree   ├── fs.realpath@1.0.0
+76 silly currentTree   ├── get-proxy@1.1.0
+76 silly currentTree   ├── get-stdin@4.0.1
+76 silly currentTree   ├── get-stream@3.0.0
+76 silly currentTree   ├── glob@7.1.1
+76 silly currentTree   ├── got@6.7.1
+76 silly currentTree   ├── graceful-fs@4.1.11
+76 silly currentTree   ├── graceful-readlink@1.0.1
+76 silly currentTree   ├── has-ansi@2.0.0
+76 silly currentTree   ├─┬ has-binary@0.1.7
+76 silly currentTree   │ └── isarray@0.0.1
+76 silly currentTree   ├── has-cors@1.1.0
+76 silly currentTree   ├── iconv-lite@0.4.15
+76 silly currentTree   ├── ieee754@1.1.8
+76 silly currentTree   ├── ignore@3.2.6
+76 silly currentTree   ├── imurmurhash@0.1.4
+76 silly currentTree   ├── indexof@0.0.1
+76 silly currentTree   ├── inflight@1.0.6
+76 silly currentTree   ├── inherits@2.0.3
+76 silly currentTree   ├── ini@1.3.4
+76 silly currentTree   ├── inquirer@3.0.6
+76 silly currentTree   ├── is-absolute@0.1.7
+76 silly currentTree   ├── is-fullwidth-code-point@2.0.0
+76 silly currentTree   ├── is-natural-number@2.1.1
+76 silly currentTree   ├── is-npm@1.0.0
+76 silly currentTree   ├── is-obj@1.0.1
+76 silly currentTree   ├── is-promise@2.1.0
+76 silly currentTree   ├── is-redirect@1.0.0
+76 silly currentTree   ├── is-relative@0.1.3
+76 silly currentTree   ├── is-retry-allowed@1.1.0
+76 silly currentTree   ├── is-stream@1.1.0
+76 silly currentTree   ├── is-url@1.2.2
+76 silly currentTree   ├── isarray@1.0.0
+76 silly currentTree   ├── isexe@2.0.0
+76 silly currentTree   ├── json3@3.3.2
+76 silly currentTree   ├── jsonfile@2.4.0
+76 silly currentTree   ├── latest-version@3.1.0
+76 silly currentTree   ├── lazy-req@2.0.0
+76 silly currentTree   ├── lodash.isplainobject@4.0.6
+76 silly currentTree   ├── lodash.merge@4.6.0
+76 silly currentTree   ├── lodash@4.17.4
+76 silly currentTree   ├── log-symbols@1.0.2
+76 silly currentTree   ├── lowercase-keys@1.0.0
+76 silly currentTree   ├── lru-cache@4.0.2
+76 silly currentTree   ├── magic-string@0.19.0
+76 silly currentTree   ├── mimic-fn@1.1.0
+76 silly currentTree   ├── minimatch@3.0.3
+76 silly currentTree   ├── minimist@1.2.0
+76 silly currentTree   ├─┬ mkdirp@0.5.1
+76 silly currentTree   │ └── minimist@0.0.8
+76 silly currentTree   ├── ms@1.0.0
+76 silly currentTree   ├── mute-stream@0.0.7
+76 silly currentTree   ├── mz@2.6.0
+76 silly currentTree   ├── node-fetch@1.6.3
+76 silly currentTree   ├── node-version@1.0.0
+76 silly currentTree   ├── npm-run-path@1.0.0
+76 silly currentTree   ├── number-is-nan@1.0.1
+76 silly currentTree   ├── object-assign@4.1.1
+76 silly currentTree   ├── object-component@0.0.3
+76 silly currentTree   ├── once@1.4.0
+76 silly currentTree   ├── onetime@2.0.1
+76 silly currentTree   ├── opn@4.0.2
+76 silly currentTree   ├── options@0.0.6
+76 silly currentTree   ├── ora@1.1.0
+76 silly currentTree   ├── os-tmpdir@1.0.2
+76 silly currentTree   ├── package-json@4.0.0
+76 silly currentTree   ├── parsejson@0.0.3
+76 silly currentTree   ├── parseqs@0.0.5
+76 silly currentTree   ├── parseuri@0.0.5
+76 silly currentTree   ├── path-is-absolute@1.0.1
+76 silly currentTree   ├── path-key@1.0.0
+76 silly currentTree   ├── pend@1.2.0
+76 silly currentTree   ├── pify@2.3.0
+76 silly currentTree   ├── pinkie-promise@2.0.1
+76 silly currentTree   ├── pinkie@2.0.4
+76 silly currentTree   ├── prepend-http@1.0.4
+76 silly currentTree   ├── process-nextick-args@1.0.7
+76 silly currentTree   ├── progress@1.1.8
+76 silly currentTree   ├── pseudomap@1.0.2
+76 silly currentTree   ├── psl@1.1.17
+76 silly currentTree   ├── qs@6.0.4
+76 silly currentTree   ├── rc@1.1.7
+76 silly currentTree   ├── reach@1.0.0
+76 silly currentTree   ├── readable-stream@2.2.6
+76 silly currentTree   ├── registry-auth-token@3.1.0
+76 silly currentTree   ├── registry-url@3.1.0
+76 silly currentTree   ├── restore-cursor@2.0.0
+76 silly currentTree   ├── resumer@0.0.0
+76 silly currentTree   ├── retry@0.10.1
+76 silly currentTree   ├── run-async@2.3.0
+76 silly currentTree   ├── rx@4.1.0
+76 silly currentTree   ├── safe-buffer@5.0.1
+76 silly currentTree   ├── seek-bzip@1.0.5
+76 silly currentTree   ├── semver-diff@2.1.0
+76 silly currentTree   ├── semver@5.3.0
+76 silly currentTree   ├── shebang-command@1.2.0
+76 silly currentTree   ├── shebang-regex@1.0.0
+76 silly currentTree   ├── signal-exit@3.0.2
+76 silly currentTree   ├── slide@1.1.6
+76 silly currentTree   ├── socket.io-client@1.7.3
+76 silly currentTree   ├─┬ socket.io-parser@2.3.1
+76 silly currentTree   │ ├── component-emitter@1.1.2
+76 silly currentTree   │ ├── debug@2.2.0
+76 silly currentTree   │ ├── isarray@0.0.1
+76 silly currentTree   │ └── ms@0.7.1
+76 silly currentTree   ├── split-array@1.0.1
+76 silly currentTree   ├── string_decoder@0.10.31
+76 silly currentTree   ├── string-width@2.0.0
+76 silly currentTree   ├── strip-ansi@3.0.1
+76 silly currentTree   ├── strip-dirs@1.1.1
+76 silly currentTree   ├── strip-eof@1.0.0
+76 silly currentTree   ├── strip-json-comments@2.0.1
+76 silly currentTree   ├── strip-outer@1.0.0
+76 silly currentTree   ├── stripe@4.15.1
+76 silly currentTree   ├── sum-up@1.0.3
+76 silly currentTree   ├── supports-color@2.0.0
+76 silly currentTree   ├── sync-exec@0.6.2
+76 silly currentTree   ├── tar-stream@1.5.2
+76 silly currentTree   ├── term-size@0.1.1
+76 silly currentTree   ├── text-table@0.2.0
+76 silly currentTree   ├── thenify-all@1.6.0
+76 silly currentTree   ├── thenify@3.2.1
+76 silly currentTree   ├── through@2.3.8
+76 silly currentTree   ├── timed-out@4.0.1
+76 silly currentTree   ├─┬ tmp-promise@1.0.3
+76 silly currentTree   │ └── bluebird@3.5.0
+76 silly currentTree   ├── tmp@0.0.31
+76 silly currentTree   ├── to-array@0.1.4
+76 silly currentTree   ├── trim-repeated@1.0.0
+76 silly currentTree   ├── tunnel-agent@0.4.3
+76 silly currentTree   ├── ultron@1.0.2
+76 silly currentTree   ├── unbzip2-stream@1.0.11
+76 silly currentTree   ├── unique-string@1.0.0
+76 silly currentTree   ├── unzip-response@2.0.1
+76 silly currentTree   ├── update-notifier@2.1.0
+76 silly currentTree   ├── url-parse-lax@1.0.0
+76 silly currentTree   ├── util-deprecate@1.0.2
+76 silly currentTree   ├── vlq@0.2.1
+76 silly currentTree   ├── which@1.2.14
+76 silly currentTree   ├─┬ widest-line@1.0.0
+76 silly currentTree   │ ├── is-fullwidth-code-point@1.0.0
+76 silly currentTree   │ └── string-width@1.0.2
+76 silly currentTree   ├── wrappy@1.0.2
+76 silly currentTree   ├── write-file-atomic@1.3.1
+76 silly currentTree   ├── ws@1.1.2
+76 silly currentTree   ├── wtf-8@1.0.0
+76 silly currentTree   ├── xdg-basedir@3.0.0
+76 silly currentTree   ├── xmlhttprequest-ssl@1.5.3
+76 silly currentTree   ├── xtend@4.0.1
+76 silly currentTree   ├── yallist@2.1.2
+76 silly currentTree   ├── yauzl@2.7.0
+76 silly currentTree   └── yeast@0.1.2
+77 silly idealTree lib
+77 silly idealTree └── now@9.2.7
+78 silly generateActionsToTake Starting
+79 silly install generateActionsToTake
+80 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/@types/fs-extra
+81 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/@types/node
+82 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/@types/mz
+83 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/after
+84 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-escapes
+85 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-styles
+86 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-regex
+87 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/any-promise
+88 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/arraybuffer.slice
+89 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/babylon
+90 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/backo2
+91 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/balanced-match
+92 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/base64-arraybuffer
+93 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/base64-js
+94 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/blob
+95 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/bluebird
+96 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/buffer-crc32
+97 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/buffer-shims
+98 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/callsite
+99 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/better-assert
+100 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/camelcase
+101 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/capture-stack-trace
+102 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/cli-spinners
+103 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/cli-boxes
+104 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/cli-width
+105 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/code-point-at
+106 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/component-bind
+107 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/component-emitter
+108 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/component-inherit
+109 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/concat-map
+110 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/brace-expansion
+111 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/core-util-is
+112 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/create-error-class
+113 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/crypto-random-string
+114 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/debug/node_modules/ms
+115 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/debug
+116 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/deep-extend
+117 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/duplexer3
+118 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/escape-string-regexp
+119 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/figures
+120 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/file-type
+121 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/filename-reserved-regex
+122 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/fs.realpath
+123 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/get-stdin
+124 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/get-stream
+125 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/graceful-fs
+126 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/graceful-readlink
+127 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/commander
+128 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/has-ansi
+129 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/has-binary/node_modules/isarray
+130 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/has-binary
+131 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/has-cors
+132 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/iconv-lite
+133 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/encoding
+134 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ieee754
+135 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/imurmurhash
+136 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/indexof
+137 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/inherits
+138 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ini
+139 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-fullwidth-code-point
+140 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-natural-number
+141 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-npm
+142 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-obj
+143 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/dot-prop
+144 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-promise
+145 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-redirect
+146 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-relative
+147 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-absolute
+148 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-retry-allowed
+149 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-stream
+150 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/isarray
+151 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/buffer
+152 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/isexe
+153 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/json3
+154 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/jsonfile
+155 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/fs-extra
+156 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/lazy-req
+157 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/lodash
+158 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/lodash.isplainobject
+159 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/lodash.merge
+160 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/lowercase-keys
+161 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/mimic-fn
+162 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/minimatch
+163 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/minimist
+164 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/mkdirp/node_modules/minimist
+165 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/mkdirp
+166 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/mute-stream
+167 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/number-is-nan
+168 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-align/node_modules/is-fullwidth-code-point
+169 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/object-assign
+170 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/object-component
+171 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/onetime
+172 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/options
+173 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/os-tmpdir
+174 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/parsejson
+175 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/parseqs
+176 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/parseuri
+177 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/path-is-absolute
+178 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/path-key
+179 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/npm-run-path
+180 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/pend
+181 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/fd-slicer
+182 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/pify
+183 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/pinkie
+184 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/pinkie-promise
+185 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress-unzip/node_modules/get-stream
+186 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/prepend-http
+187 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/process-nextick-args
+188 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/pseudomap
+189 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/qs
+190 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/reach
+191 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/retry
+192 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/run-async
+193 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/rx
+194 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/safe-buffer
+195 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/seek-bzip
+196 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/semver
+197 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/semver-diff
+198 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/shebang-regex
+199 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/shebang-command
+200 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/signal-exit
+201 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/restore-cursor
+202 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/cli-cursor
+203 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/slide
+204 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-parser/node_modules/isarray
+205 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-parser/node_modules/component-emitter
+206 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-parser/node_modules/ms
+207 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-parser/node_modules/debug
+208 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-parser
+209 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/string_decoder
+210 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/strip-ansi
+211 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-align
+212 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-align/node_modules/string-width
+213 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/string-width
+214 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/strip-eof
+215 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/strip-json-comments
+216 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/rc
+217 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/get-proxy
+218 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/registry-auth-token
+219 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/registry-url
+220 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/strip-outer
+221 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/supports-color
+222 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/chalk
+223 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/log-symbols
+224 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/sum-up
+225 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/strip-dirs
+226 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/sync-exec
+227 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/thenify
+228 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/thenify-all
+229 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/mz
+230 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/through
+231 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/timed-out
+232 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/tmp
+233 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/external-editor
+234 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/tmp-promise/node_modules/bluebird
+235 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/to-array
+236 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/trim-repeated
+237 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/filenamify
+238 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/tunnel-agent
+239 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/caw
+240 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ultron
+241 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/unbzip2-stream
+242 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/unique-string
+243 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/unzip-response
+244 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/url-parse-lax
+245 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/got
+246 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/package-json
+247 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/latest-version
+248 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/util-deprecate
+249 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/readable-stream
+250 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/bl
+251 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/vlq
+252 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/magic-string
+253 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/which
+254 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/widest-line/node_modules/is-fullwidth-code-point
+255 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/widest-line/node_modules/string-width
+256 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/widest-line
+257 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/wrappy
+258 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/once
+259 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/end-of-stream
+260 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/inflight
+261 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/write-file-atomic
+262 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ws
+263 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/wtf-8
+264 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/engine.io-parser
+265 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/xdg-basedir
+266 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/configstore
+267 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/xmlhttprequest-ssl
+268 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/xtend
+269 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/tar-stream
+270 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress-tar
+271 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress-tarbz2
+272 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress-targz
+273 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/yallist
+274 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/lru-cache
+275 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/cross-spawn-async
+276 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/execa
+277 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/boxen
+278 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/term-size
+279 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/yauzl
+280 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress-unzip
+281 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress
+282 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/yeast
+283 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/engine.io-client
+284 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/@google/maps
+285 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/arr-flatten
+286 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/array-unique
+287 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/async-retry
+288 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/async-to-gen
+289 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/bytes
+290 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/copy-paste
+291 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/credit-card
+292 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/cross-spawn
+293 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/docker-file-parser
+294 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/dotenv
+295 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/download
+296 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/email-prompt
+297 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/email-validator
+298 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/fs-promise
+299 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/glob
+300 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ignore
+301 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/inquirer
+302 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/is-url
+303 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ms
+304 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/node-fetch
+305 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/node-version
+306 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/opn
+307 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ora
+308 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/progress
+309 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/resumer
+310 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/psl
+311 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-client
+312 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/split-array
+313 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/stripe
+314 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/text-table
+315 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/tmp-promise
+316 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/update-notifier
+317 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now
+318 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/@types
+319 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules
+320 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/debug/node_modules
+321 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/has-binary/node_modules
+322 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/mkdirp/node_modules
+323 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/ansi-align/node_modules
+324 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/decompress-unzip/node_modules
+325 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/socket.io-parser/node_modules
+326 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/tmp-promise/node_modules
+327 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/widest-line/node_modules
+328 warn checkPermissions Missing write access to /usr/local/lib/node_modules/now/node_modules/@google
+329 warn checkPermissions Missing write access to /usr/local/lib/node_modules
+330 silly rollbackFailedOptional Starting
+331 silly rollbackFailedOptional Finishing
+332 silly runTopLevelLifecycles Finishing
+333 silly install printInstalled
+334 verbose stack Error: EACCES: permission denied, access '/usr/local/lib/node_modules/now/node_modules/@types/fs-extra'
+334 verbose stack     at Error (native)
+335 verbose cwd /Users/wing/Project/app/happyNewYear
+336 error Darwin 17.3.0
+337 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "i" "-g" "now"
+338 error node v6.9.1
+339 error npm  v3.10.8
+340 error path /usr/local/lib/node_modules/now/node_modules/@types/fs-extra
+341 error code EACCES
+342 error errno -13
+343 error syscall access
+344 error Error: EACCES: permission denied, access '/usr/local/lib/node_modules/now/node_modules/@types/fs-extra'
+344 error     at Error (native)
+344 error  { Error: EACCES: permission denied, access '/usr/local/lib/node_modules/now/node_modules/@types/fs-extra'
+344 error     at Error (native)
+344 error   errno: -13,
+344 error   code: 'EACCES',
+344 error   syscall: 'access',
+344 error   path: '/usr/local/lib/node_modules/now/node_modules/@types/fs-extra' }
+345 error Please try running this command again as root/Administrator.
+346 verbose exit [ -13, true ]
