@@ -13,38 +13,45 @@
          <img class="happy" src="img/home_fu@3x.png">
     </div>
     <div id="card" >
-        <div id="card_holder">
-            <img id="card_text" alt="">
-            <ul id="card_ul">
+        <div id="card_centent">
+            <div id="firework">
+                <div class="before"></div>
+                <div class="after"></div>
+            </div>
+            <img id="card_text" src="image/tag_2-text.png" style="height: 70%;position: relative;left: 1px;">
+            <img src="image/tag-2019-text.png" style="width: 30px;position: absolute;top: 37%;margin-left: 20px;">
+            
+            <!-- <ul id="card_ul">
             </ul>
-            <p id="card_intro"></p>
+            <p id="card_intro"></p> -->
         </div>
-        <div id="card_top">
-            <img src="img/slice_tp_text@3x.png">
-        </div>
+        <div id="card_top"></div>
         <div id="card_bottom">
-            <img src="img/slice_dw_text@3x.png">
+            <img class="logo" src="image/tag-bg-logo.png">
+            <img src="image/tag-bg-bottom.png" style="width: 100%;">
         </div>
     </div>
     <div id="empty"></div>
     <div id="index">
-            <div id="logo">
-                <img src="img/home_cswadi@3x.png" alt="cswadi">
-            </div>
-            <div id="dec-tree">
-                <img src="img/dec-tree.png">
-            </div>
-            <div id="happy">
-                <img class="happy" src="img/home_fu@3x.png">
-                <img class="text" src="img/home_2018@3x.png">
-                <img class="qian" src="img/home_qian@3x.png">
-            </div>
-            <div id="text">
-                <img class="pointer" src="img/pointer.png">
-                <img class="text" src="img/text.png">
-            </div>
-            <p id="tips">获取中建西南院新年福签</p>
+        <div id="logo">
+            <img src="image/logo.png" alt="cswadi">
         </div>
+        <div id="dec-tree">
+            <img src="img/dec-tree.png">
+        </div>
+        <div id="happy">
+            <img class="happy" src="image/index-main-fu.png">
+            <!-- <img class="qian" src="img/home_qian@3x.png"> -->
+        </div>
+        <div id="text">
+            <img class="pointer" src="img/pointer.png">
+            <img class="text" src="img/text.png">
+        </div>
+        <p id="tips">
+            <img src="image/logo-sm.png" style="width:90px">
+        </p>
+        <img class="lantern1" src="image/lantern.png">
+    </div>
     <script type="text/javascript">
     document.setTitle = function(t) {
         document.title = t;
@@ -70,12 +77,18 @@
             var intro = document.getElementById("card_intro");
             var top = document.getElementById("card_top");
             var bottom = document.getElementById("card_bottom");
+            var firework = document.getElementById("firework");
             btn.onclick = function () {
                 index.style.display = "none";
                 empty.style.display = "none";
-                top.className = "slideIndown";
-                text.className = "slideInLeft";
-                var lines = holder.getElementsByTagName("li");
+                // top.className = "slideIndown";
+                // text.className = "slideInLeft";
+                text.className = "bounceInDown";
+                bottom.className = "slideInUp";
+                setTimeout(function(){
+                    firework.className = "pyro";
+                },300);
+                /* var lines = holder.getElementsByTagName("li");
                 for(var i =0;i<lines.length;i++){
                     (function(index){
                         console.log(index);
@@ -86,80 +99,44 @@
                         },500);
                     })(i)
                     
-                }
-                document.setTitle("我在中建西南院抽到的福签是："+data.title);
+                } */
+                document.setTitle("我在中建西南院抽到的福签是："+data.name);
                 // wxConfig();
             };
             function getInfo(){
                 var list = [{
                 index: 1,
-                name: "青白江区文化体育中心",
-                title: "怎么吃都不长胖",
-                brief: ["爱运动的人，","身体都不会太胖，","#2018，迈开腿，管住嘴！#"]
+                name: "升职加薪"
                 },{
                 index: 2,
-                name: "中国西部博览城",
-                title: "燃",
-                brief: ["大V展翅，","#2018小宇宙全面爆发啦！#"]
+                name: "锦鲤附身"
                 },{
                 index: 3,
-                name: "保利林芝鲁朗精品别墅型度假酒店项目",
-                title:"诗与远方",
-                brief:["愿你去往之地皆为热土，","愿你将遇之人皆为挚友，","#2018，许自己一段旅行吧！#"]
+                name: "多吃不胖"
                 },{
                 index: 4,
-                name: "ICON·云端",
-                title:"颜值巅峰",
-                brief:["帅到掉渣，","貌美如花，","#2018，我最美！#"]
+                name: "人生赢家"
                 },{
                 index: 5,
-                name: "四川省图书馆",
-                title:"通达",
-                brief:["愿你常翻书卷，将心性雕琢，","寻得一份耐人的旷达，","向生活许些美好，","#2018，悦读悦精彩！#"],
+                name: "一稿过"
                 },{
                 index: 6,
-                name: "四川大学喜马拉雅文化及宗教研究中心",
-                title:"宁静",
-                brief:["愿你在闹市中寻得一方净土，","度日如诗，","#2018，淡定于心，沉淀自我！#"],
+                name: "C位出道"
                 },{
                 index: 7,
-                name: "华西第二医院锦江院区",
-                title:"兴旺",
-                brief:["愿单身的朋友都脱单，已婚朋友早生贵子；","愿企业兴旺发达，蒸蒸日上；","#2018，旺旺旺！#"]
+                name: "逆生长"
                 },{
                 index: 8,
-                name: "达州嘉祥外国语学校建设项目",
-                title:"青春",
-                brief:["青春无关年华，","它是你不认怂的每时每刻，","#2018，重回18！#"]
+                name: "一路躺赢"
                 },{
                 index: 9,
-                name: "重庆机场T3航站楼",
-                title:"一飞冲天",
-                brief:["乘着梦想的翅膀，","飞得更高，","#2018，一帆风顺！#"]
-                },{
-                index: 10,
-                name: "招商银行后台服务中心",
-                title:"壕",
-                brief:["财源滚滚，","有钱任性，","#2018，闷声发大财！#"]
-                },{
-                index: 11,
-                name: "天府中央公园",
-                title:"悦心",
-                brief:["面朝阳光","春暖花开","#2018，事事顺心！#"]
-                }];
+                name: "平安喜乐"
+                },];
                 var random = parseInt(Math.random()*10);
                 window.data = list[random];
                 console.log(random);
                 console.log(data);
-                holder.style.height = (window.innerHeight - 90)+"px";
-                holder.style.backgroundImage = "url('img/"+data.index+"_bg@3x.png')";
-                text.src = "img/"+data.index+"_text.svg";
-                intro.innerHTML = data.name;
-                for(var i = 0;i<data.brief.length;i++){
-                    var el = document.createElement("li");
-                    el.innerHTML = data.brief[i];
-                    holder_ul.appendChild(el);
-                }
+                text.src = "image/tag_"+data.index+"-text.png";
             }
             getInfo();
             /* function getInfo(){
