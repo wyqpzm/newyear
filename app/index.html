@@ -9,9 +9,10 @@
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 <body>
-    <div style="display:none">
+    <img src="image/icon.png" alt="cswadi" width="0" height="0">
+    <!-- <div style="display:none">
          <img class="happy" src="img/home_fu@3x.png">
-    </div>
+    </div> -->
     <div id="card" >
         <div id="card_centent">
             <div id="firework">
@@ -19,7 +20,7 @@
                 <div class="after"></div>
             </div>
             <img id="card_text" src="image/tag_2-text.png" style="height: 70%;position: relative;left: 1px;">
-            <img src="image/tag-2019-text.png" style="width: 30px;position: absolute;top: 37%;margin-left: 20px;">
+            <img id="card_mark" src="image/tag-2019-text.png" style="width: 30px;position: absolute;top: 37%;margin-left: 20px;">
             
             <!-- <ul id="card_ul">
             </ul>
@@ -28,7 +29,7 @@
         <div id="card_top"></div>
         <div id="card_bottom">
             <img class="logo" src="image/tag-bg-logo.png">
-            <img src="image/tag-bg-bottom.png" style="width: 100%;">
+            <img src="image/tag-bg-bottom.png" style="width: 100%;position: absolute;bottom: 0;left: 0;">
         </div>
     </div>
     <div id="empty"></div>
@@ -42,15 +43,17 @@
         <div id="happy">
             <img class="happy" src="image/index-main-fu.png">
             <!-- <img class="qian" src="img/home_qian@3x.png"> -->
+            <div id="text">
+                <img class="pointer" src="img/pointer.png">
+                <img class="text" src="img/text.png">
+            </div>
+            <p id="tips">
+                <img src="image/logo-sm.png" style="width:90px;">
+            </p>
         </div>
-        <div id="text">
-            <img class="pointer" src="img/pointer.png">
-            <img class="text" src="img/text.png">
-        </div>
-        <p id="tips">
-            <img src="image/logo-sm.png" style="width:90px">
-        </p>
+        
         <img class="lantern1" src="image/lantern.png">
+        <img class="lantern2" src="image/lantern.png">
     </div>
     <script type="text/javascript">
     document.setTitle = function(t) {
@@ -71,13 +74,13 @@
             var index = document.getElementById("index");
             var empty = document.getElementById("empty");
             var card = document.getElementById("card");
-            var holder = document.getElementById("card_holder");
-            var holder_ul = document.getElementById("card_ul");
             var text = document.getElementById("card_text");
             var intro = document.getElementById("card_intro");
             var top = document.getElementById("card_top");
             var bottom = document.getElementById("card_bottom");
             var firework = document.getElementById("firework");
+            var firework = document.getElementById("firework");
+            var cardMark = document.getElementById("card_mark");
             btn.onclick = function () {
                 index.style.display = "none";
                 empty.style.display = "none";
@@ -85,6 +88,7 @@
                 // text.className = "slideInLeft";
                 text.className = "bounceInDown";
                 bottom.className = "slideInUp";
+                cardMark.className = "fadeIn";
                 setTimeout(function(){
                     firework.className = "pyro";
                 },300);

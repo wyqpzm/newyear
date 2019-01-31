@@ -29,6 +29,13 @@ body,html{
     left: 20px;
     top: 400px;
 }
+#index .lantern2{
+    width: 30px;
+    position: absolute;
+    right: 55px;
+    top: 250px;
+    opacity: .7;
+}
 #empty{
     position: fixed;
     top: 0;
@@ -58,12 +65,13 @@ body,html{
 }
 #happy{
     width: 80%;
+    height: 100%;
     margin: 40% auto 0;
     position: relative;
     text-align: center;
 }
 #happy .happy{
-    height: 350px;
+    height: 50%;
 }
 #happy .qian{
     width: 30%;
@@ -240,6 +248,9 @@ body,html{
 .slideIndown{
     animation: slideInDown 1s;
 }
+.fadeIn{
+    animation: fadeIn 2s;
+}
 .slideInLeft {
     animation: slideInLeft 1s ease-in-out 0s;
 }
@@ -272,10 +283,6 @@ body,html{
     }
 }
 
-#card .fadeIn {
-    animation: fadeIn 4s;
-    opacity: 1;
-}
 .pyro > .before, .pyro > .after {
     position: fixed;
     left: 50%;
