@@ -2,6 +2,7 @@ var express = require("express");
 var app     = express();
 var port    = parseInt(process.env.PORT, 10) || 8080;
 var request = require('request');
+var fs      = require('fs');
 var access = "";
 
 
@@ -80,6 +81,23 @@ app.get('/card', function(req, res) {
 
     res.send(info);
 });
+app.post('/info',function(req, res){
+    var params = req.body;
+    var code = params.code;
+    request({
+        uri: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxb49e5dfd72b947e7&secret=6a7cd5a45c6f21b7152d5f9ebaa0bbad&code='+code+'&grant_type=authorization_code',
+        method: 'GET'
+    }, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            var body = JSON.parse(body);
+            console.log(body);
+            access = body.access_token;
+            // getTicket();
+        }else{
+            console.log("access_token fail");
+        }
+    });
+})
 app.post('/wx',function(req, res){
     var params = req.body;
     var url = params.url;
@@ -118,6 +136,75 @@ app.post('/wx',function(req, res){
     };
     getAccess();
 });
+app.get('/getOpenid',function(req, res){
+  var params = req.query;
+  var code = params.code;
+  console.log(params);
+  console.log(code);
+  request({
+      uri: 'https://api.weixin.qq.com/sns/jscode2session?appid=wx59985dae41870dd1&secret=970e7ccd8e1f558d0fff6cc24c7a4625&js_code='+code+'&grant_type=authorization_code',
+      method: 'GET'
+  }, function (error, response, body) {
+      var body = JSON.parse(body);
+      console.log(body);
+      if (!error && response.statusCode === 200) {
+        res.send({
+          result: 'TRUE',
+          msg: '',
+          data: body
+      });
+      }else{
+        res.send({
+            result: 'FALSE',
+            msg: '查询失败',
+            data: body
+        });
+      }
+  });
+})
+app.get('/checkLogin',function(req,res){
+  var params = req.query;
+  var openid = params.openid;
+  fs.readdir("./app/data",function(err,files){
+    if(err){
+      console.log(err);
+      res.json({result:"FALSE",msg:"查询失败",data:""});
+    }
+    files.forEach(function(file){
+      if(file.indexOf(openid)>-1){
+        res.json({result:"TRUE",msg:"",data:1});
+      }
+    });
+    res.json({result:"TRUE",msg:"",data:0});
+  })
+})
+app.post('/login',function(req, res){
+  var params = req.body;
+  var name = params.name;
+  var code = params.code;
+  var openid = params.openid;
+  fs.exists("./app/data/"+openid+".json",function(exists){
+    if(exists){
+      res.json({result:"TRUE",msg:"",data:"登陆成功"});
+    }else{
+      var content = {
+        name: name,
+        code: code,
+        openid : openid,
+        data: {}
+      }
+      var str = JSON.stringify(content);
+      fs.writeFile("./app/data/"+openid+".json",str,function(err){
+        if(err){
+            console.error(err);
+            res.json({result:"FALSE",msg:"登陆失败，请重试",data:""});
+        }
+        console.log('----------新增成功-------------');
+        res.json({result:"TRUE",msg:"",data:"登陆成功"});
+      })
+    }
+  })
+})
 
 
 var createNonceStr = function () {
