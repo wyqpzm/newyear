@@ -1,5 +1,6 @@
 {
     "name": "happyNewYear",
     "version": 2,
-    "public": false
+    "public": false,
+    "routes": [{ "getOpenid": "/getOpenid", "checkLogin": "/checkLogin", "login": "/login" }]
 }
