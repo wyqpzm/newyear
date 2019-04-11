@@ -205,6 +205,9 @@ app.post('/login',function(req, res){
     }
   })
 })
+app.post('/location',function(req,res){
+  
+})
 
 
 var createNonceStr = function () {
