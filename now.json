@@ -1,9 +1,5 @@
 {
     "name": "happyNewYear",
     "version": 2,
-    "public": false,
-    "github": {
-        "enabled": true
-    },
-    "routes": [{ "getOpenid": "/getOpenid", "checkLogin": "/checkLogin", "login": "/login" }]
+    "public": false
 }

@@ -206,7 +206,10 @@ app.post('/login',function(req, res){
   })
 })
 app.post('/location',function(req,res){
-  
+  var params = req.body;
+  var name = params.name;
+  var code = params.code;
+  var openid = params.openid;
 })
 
 
