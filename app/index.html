@@ -6,6 +6,7 @@
     <title>签到</title>
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/screen.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
 </head>
 <body>
@@ -20,7 +21,7 @@
                     <input type="text" class="input" placeholder="姓名" v-model="form.name"/>
                     <input type="text" class="input" placeholder="学号" v-model="form.code"/>
                     <div>
-                        <button type="primary" size="default" :loading="loading" style="margin-top:15px;" @click="login">提交</button>                        
+                        <button class="btn btn-success" style="margin-top:15px;width: 100%;" :disabled="disabled" @click="login">{{button_text}}</button>
                     </div>
                 </div>
             </div>
@@ -33,7 +34,8 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                loading: false,
+                disabled: false,
+                button_text: '提交',
                 form: {
                     name: "",
                     code: ""
@@ -41,7 +43,7 @@
             },
             mounted: function(){
                 var $_GET = this.getUrlParams();
-                axios.post('/info', {
+                /* axios.post('/info', {
                     code: $_GET['code']
                 })
                 .then(function (response) {
@@ -49,13 +51,19 @@
                 })
                 .catch(function (error) {
                     console.log(error);
-                });
+                }); */
             },
             methods:{
                 login(){
                     console.log("wing");
                     console.log(this.form);
-                    this.loading = true;
+                    if(this.form.name&&this.form.code){
+                        this.button_text = '提交中……';
+                        this.disabled = true;
+                    }else{
+                        alert("姓名和学号不能为空！")
+                    }
+                    
                 },
                 getUrlParams: function () {
                     var qs=location.search.length>0?location.search.substring(1):"";
