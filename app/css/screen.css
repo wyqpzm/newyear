@@ -12,7 +12,6 @@ html,body, img, input, label, legend, li, mark, ol,div,p,section, span, strong, 
 body,html{
     width: 100%;
     height: 100%;
-    background: #b31f24;
 }
 h1,h2,h3{
     margin: 0;
