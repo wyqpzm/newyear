@@ -10,7 +10,21 @@
 </head>
 <body>
     <div id="app">
-
+        <div class="main">
+            <div class="bg-top">
+                <image style="width:180px;height:150px;" src="image/logo_hx.jpg"></image>
+            </div>
+            <div class="login-box">
+                <div class="content">
+                    <h2 class="title">登陆</h2>
+                    <input type="text" class="input" placeholder="姓名" v-model="form.name"/>
+                    <input type="text" class="input" placeholder="学号" v-model="form.code"/>
+                    <div>
+                        <button type="primary" size="default" :loading="loading" style="margin-top:15px;" @click="login">提交</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

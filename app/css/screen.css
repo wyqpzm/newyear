@@ -14,153 +14,63 @@ body,html{
     height: 100%;
     background: #b31f24;
 }
-#index{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../image/index-bg-dot.png') 0 0 repeat;
-    background-size: 190px auto;
+h1,h2,h3{
+    margin: 0;
 }
-#index .lantern1{
-    width: 43px;
-    position: absolute;
-    left: 20px;
-    top: 400px;
-}
-#index .lantern2{
-    width: 30px;
-    position: absolute;
-    right: 55px;
-    top: 250px;
-    opacity: .7;
-}
-#empty{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #9F2921;
-}
-#dec-tree img{
-    position: absolute;
-    top: 0;
-    right: -3px;
-    margin-top: 30px;
-    width: 80%;
-    transform-origin: right top;
-    transform: rotate(2deg);
-    animation: swing 5s ease infinite;
-    z-index: 5;
-}
-#logo{
-    position: fixed;
-    left: 11px;
-    top: 13px;
-}
-#logo img{
-    width: 100px;
-}
-#happy{
-    width: 80%;
-    height: 100%;
-    margin: 40% auto 0;
+
+#app{
+    /* background:#e3e1e8; */
+    background: #eee;
+    background-size: 100% 100%;
+    min-height: 100vh;
     position: relative;
+}
+#app .main{
+    padding: 20%;
+    position: relative;
+}
+#app .bg-top{
     text-align: center;
-}
-#happy .happy{
-    height: 50%;
-}
-#happy .qian{
-    width: 30%;
-    position: absolute;
-    bottom: 0;
+    /* width: 196px;
+    height: 223px;
+    background: url('https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike272%2C5%2C5%2C272%2C90/sign=86ba01c4fa1f4134f43a0d2c4476feaf/9345d688d43f87948466d409d51b0ef41bd53a7f.jpg') no-repeat scroll 0 0;
+    position: relative;
     left: 50%;
-    margin-left: -40px;
+    margin-left: -95px; */
 }
-#text{
-    position: relative;
-    width: 160px;
-    margin: 10px auto 0;
+#app .login-box{
+    background:#fff;
+    width:80%;
+    height:200px;
+    position:absolute;
+    top:260px;
+    left:10%;
+    text-align:center;
+    color:#666;
+    font-size:17px;
+    border-radius:8px;
 }
-#text .pointer{
-    position: absolute;
-    top: -26px;
-    right: -24px;
-    width: 36px;
-    animation: pointing 2s linear infinite;
+.login-box .content{
+    padding: 15px;
 }
-#text .text{
-    margin-top: 10px;
-    width: 160px;
-}
-#tips{
+.login-box .title{
     text-align: center;
-    color: #fff;
-    margin-top: 6px;
+    font-size: 16px;
 }
-#card{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    background: #b32127;
-}
-#card_centent{
-    text-align: center;
-    height: 100%;
-    background: url('../image/tag-bg-cloud.png') 10% 60% no-repeat;
-    background-size: 200px auto;
-}
-#card_holder{
-    position: relative
-}
-#card_holder li{
-    display: none;
-}
-#card_holder img{
-    height: 20%;
-    max-width: 70%;
-}
-#card_holder p{
-    position: absolute;
-    right: 10px;
-    bottom: 5px;
-    color: #edb45a;
-    font-size: 14px;
-    text-shadow: 1px 1px 1px #5b3800;
-}
-#card_top{
-    height: 60px;
+.login-box .input{
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    margin-top:15px;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: url('../image/tag-bg-top.png') 50% 0 scroll no-repeat;
-    background-size: auto 60px;
+    padding: 5px;
 }
-#card_top img{
-    width: 97px;
-}
-#card_bottom{
-    text-align: center;
-    height: 140px;
-    vertical-align: bottom;
-    position: fixed;
+.createWrapper .bg{
+    background-color: #EFEFF4;
+    position: absolute;
+    top: 100px;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
-}
-#card_bottom .logo{
-    width: 80px;
-    position: absolute;
-    left:50%;
-    bottom: 90px;
-    margin-left: -40px;
 }
 
 @-webkit-keyframes swing {
