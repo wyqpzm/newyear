@@ -35,7 +35,7 @@
                     <p class="p1" v-cloak>现在是{{time_text}}</p>
                     <p class="p1 textFail" v-cloak>{{location_text}}</p> 
                     <div id="mapErea" class="mapErea"></div> 
-                    <button class="clockBtn lg">签到</button>
+                    <button class="clockBtn lg" :disabled="location_disabled">签到</button>
                     <a href="#/record" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     console.log(JSON.stringify(data));
                     this.location_text = data.formattedAddress;
                     var distance = getDistanceFromLatLonInM(data.position.lat, data.position.lng,29.5353975866,106.5126228333);
-                    alert(distance)
+                    // alert(distance)
                 },
                 locationError: function(data){
                     alert("定位失败");

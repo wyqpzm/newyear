@@ -13,6 +13,10 @@ app.configure(function(){
   app.use(app.router);
 });
 
+var config = {
+  date: []
+}
+
 var list = [{
   index: 1,
   name: "青白江区文化体育中心",
