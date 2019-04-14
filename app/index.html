@@ -171,9 +171,10 @@
                 },
                 locationComplete: function(data){
                     console.log("定位成功");
-                    alert(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
                     this.location_text = data.formattedAddress;
-                    var distance = getDistanceFromLatLonInM(data.position.getLat(), data.position.getLng(),29.5353975866,106.5126228333);
+                    alert(data.position.lat);
+                    var distance = getDistanceFromLatLonInM(data.position.lat, data.position.lng,29.5353975866,106.5126228333);
                     alert(distance)
                 },
                 locationError: function(data){
