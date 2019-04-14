@@ -70,11 +70,14 @@
                 }
             },
             mounted: function(){
+                var vm = this;
                 var $_GET = this.getUrlParams();
                 if(localStorage.getItem('code')){
                     this.status = 'location';
                 }
-                mapObj = new AMap.Map('mainErea');
+                mapObj = new AMap.Map('mapErea',{
+                    resizeEnable: true
+                });
                 mapObj.plugin('AMap.Geolocation', function () {
                     var geolocation = new AMap.Geolocation({
                         enableHighAccuracy: true,//是否使用高精度定位，默认:true
@@ -89,11 +92,11 @@
                         panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
                         zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
                     });
-                    console.log(mapObj);
+                    console.log(geolocation);
                     mapObj.addControl(geolocation);
                     geolocation.getCurrentPosition();
-                    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-                    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                    AMap.event.addListener(geolocation, 'complete', vm.locationComplete);//返回定位信息
+                    AMap.event.addListener(geolocation, 'error', vm.locationError);      //返回定位出错信息
                 });
                 /* axios.post('/info', {
                     code: $_GET['code']
@@ -140,11 +143,13 @@
                     }
                     
                 },
-                locationComplete: function(){
-                    console.log("定位成功");
+                locationComplete: function(data){
+                    alert("定位成功");
+                    alert(JSON.stringify(data));
                 },
-                locationError: function(){
-                    console.log("定位失败");
+                locationError: function(data){
+                    alert("定位失败");
+                    alert(JSON.stringify(data));
                 },
                 getUrlParams: function () {
                     var qs=location.search.length>0?location.search.substring(1):"";
