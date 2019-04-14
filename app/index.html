@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width,user-scalable=no" name="viewport"> 
+    <meta content="width=device-width,user-scalable=no,initial-scale=1.0" name="viewport"> 
     <title>签到</title>
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/screen.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="main">
+        <div class="main" v-show="status=='main'">
             <div class="bg-top">
                 <image style="width:180px;height:150px;" src="image/logo_hx.jpg"></image>
             </div>
@@ -26,14 +26,41 @@
                 </div>
             </div>
         </div>
+        <div class="location" v-show="status=='location'">
+            <div class="clockApp">
+                <div class="welcomePic">
+                    <img width="100%" src="/image/starMorning@2x.gif" alt="">
+                </div>
+                <div class="mainErea">
+                    <p class="p1">现在是 04月14日 周日 10:51:12</p>
+                    <p class="p1 textFail">正在定位...</p> 
+                </div>
+                <div id="mapErea" class="mapErea"></div> 
+                <button class="clockBtn lg"><span>打卡</span></button>
+                <a href="#/record" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">考勤记录</a>
+            </div>
+        </div>
+        <!-- <div v-if="!allowShow" style="text-align:center;padding: 10px;">
+            请在微信中打开
+        </div> -->
     </div>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=dd65e37cecc15cc90140c9e9905f2ccd"></script> 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-    
+        function isWeiXin(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
+        }
         var vm = new Vue({
             el: '#app',
             data: {
+                status: 'main',
+                allowShow: isWeiXin(),
                 disabled: false,
                 button_text: '提交',
                 form: {
@@ -43,6 +70,30 @@
             },
             mounted: function(){
                 var $_GET = this.getUrlParams();
+                if(localStorage.getItem('code')){
+                    this.status = 'location';
+                }
+                mapObj = new AMap.Map('mainErea');
+                mapObj.plugin('AMap.Geolocation', function () {
+                    var geolocation = new AMap.Geolocation({
+                        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                        maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                        convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                        showButton: true,        //显示定位按钮，默认：true
+                        buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                        showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                        showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                        panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                        zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                    });
+                    console.log(mapObj);
+                    mapObj.addControl(geolocation);
+                    geolocation.getCurrentPosition();
+                    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                });
                 /* axios.post('/info', {
                     code: $_GET['code']
                 })
@@ -57,13 +108,42 @@
                 login(){
                     console.log("wing");
                     console.log(this.form);
-                    if(this.form.name&&this.form.code){
+                    var name = this.form.name;
+                    var code = this.form.code;
+                    var vm = this;
+                    if(name&&code){
                         this.button_text = '提交中……';
                         this.disabled = true;
+                        axios.post('/login', {
+                            code: code,
+                            name: name
+                        })
+                        .then(function (response) {
+                            console.log(response);
+                            var data = response.data;
+                            console.log(data);
+                            if(data.result=="TRUE"){
+                                localStorage.setItem("code",code);
+                                vm.status = "location";
+                                console.log(vm.status);
+                            }else{
+                                alert("登录失败，请重试")
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                            alert("服务器连接失败，请重试")
+                        });
                     }else{
                         alert("姓名和学号不能为空！")
                     }
                     
+                },
+                locationComplete: function(){
+                    console.log("定位成功");
+                },
+                locationError: function(){
+                    console.log("定位失败");
                 },
                 getUrlParams: function () {
                     var qs=location.search.length>0?location.search.substring(1):"";

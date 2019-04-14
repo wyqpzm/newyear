@@ -182,19 +182,18 @@ app.post('/login',function(req, res){
   var params = req.body;
   var name = params.name;
   var code = params.code;
-  var openid = params.openid;
-  fs.exists("./app/data/"+openid+".json",function(exists){
+  console.log(code);
+  fs.exists("./app/data/"+code+".json",function(exists){
     if(exists){
       res.json({result:"TRUE",msg:"",data:"登陆成功"});
     }else{
       var content = {
         name: name,
         code: code,
-        openid : openid,
         data: {}
       }
       var str = JSON.stringify(content);
-      fs.writeFile("./app/data/"+openid+".json",str,function(err){
+      fs.writeFile("./app/data/"+code+".json",str,function(err){
         if(err){
             console.error(err);
             res.json({result:"FALSE",msg:"登陆失败，请重试",data:""});
