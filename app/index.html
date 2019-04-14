@@ -32,12 +32,13 @@
                     <img width="100%" src="image/starMorning@2x.gif" alt="">
                 </div>
                 <div class="mainErea">
-                    <p class="p1">现在是 04月14日 周日 10:51:12</p>
-                    <p class="p1 textFail">正在定位...</p> 
+                    <h2>上课了，请签到</h2>
+                    <p class="p1" v-cloak>现在是{{time_text}}</p>
+                    <p class="p1 textFail" v-cloak>{{location_text}}</p> 
+                    <div id="mapErea" class="mapErea"></div> 
+                    <button class="clockBtn lg">签到</button>
+                    <a href="#/record" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
                 </div>
-                <div id="mapErea" class="mapErea"></div> 
-                <button class="clockBtn lg"><span>打卡</span></button>
-                <a href="#/record" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">考勤记录</a>
             </div>
         </div>
         <!-- <div v-if="!allowShow" style="text-align:center;padding: 10px;">
@@ -57,6 +58,12 @@
                 return false;
             }
         }
+        function zeroPad(digits, n) {
+            n = n.toString();
+            while (n.length < digits)
+                n = '0' + n;
+            return n;
+        }
         var vm = new Vue({
             el: '#app',
             data: {
@@ -65,9 +72,11 @@
                 disabled: false,
                 button_text: '提交',
                 form: {
-                    name: "",
-                    code: ""
-                }
+                    name: '',
+                    code: ''
+                },
+                time_text: '',
+                location_text: '正在定位...'
             },
             mounted: function(){
                 var vm = this;
@@ -75,6 +84,12 @@
                 if(localStorage.getItem('code')){
                     this.status = 'location';
                 }
+                var date = new Date();
+                var date_year = date.getFullYear();
+                var date_month = date.getMonth()+1;
+                var date_date = date.getDate();
+                var date_time = zeroPad(2,date.getHours())+':'+zeroPad(2,date.getMinutes())+":"+zeroPad(2,date.getSeconds());
+                this.time_text = ' '+date_year+'年'+date_month+'月'+date_date+'日'+' '+date_time;
                 mapObj = new AMap.Map('mapErea',{
                     resizeEnable: true
                 });
@@ -144,8 +159,9 @@
                     
                 },
                 locationComplete: function(data){
-                    alert("定位成功");
-                    alert(JSON.stringify(data));
+                    console.log("定位成功");
+                    console.log(JSON.stringify(data));
+                    this.location_text = data.formattedAddress;
                 },
                 locationError: function(data){
                     alert("定位失败");
