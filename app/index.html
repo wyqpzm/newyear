@@ -10,9 +10,9 @@
 </head>
 <body>
     <div id="app">
-        <div class="main" v-show="status=='main'">
+        <div class="main" v-show="status=='login'">
             <div class="bg-top">
-                <image style="width:180px;height:150px;" src="image/logo_hx.jpg"></image>
+                <image style="width:180px;" src="image/logo_hx.png"></image>
             </div>
             <div class="login-box">
                 <div class="content">
@@ -39,6 +39,9 @@
                     <a href="#/record" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
                 </div>
             </div>
+        </div>
+        <div class='record' v-show="status=='record'">
+
         </div>
         <!-- <div v-if="!allowShow" style="text-align:center;padding: 10px;">
             请在微信中打开
@@ -83,7 +86,7 @@
                 status: 'location',
                 allowShow: isWeiXin(),
                 login_disabled: false,
-                location_disabled: false,
+                location_disabled: true,
                 button_text: '提交',
                 form: {
                     name: '',
@@ -95,9 +98,9 @@
             mounted: function(){
                 var vm = this;
                 var $_GET = this.getUrlParams();
-                if(localStorage.getItem('code')){
+                /* if(localStorage.getItem('code')){
                     this.status = 'location';
-                }
+                } */
                 var date = new Date();
                 var date_year = date.getFullYear();
                 var date_month = date.getMonth()+1;

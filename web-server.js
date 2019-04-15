@@ -1,21 +1,20 @@
 var express = require("express");
+var path = require('path');
 var app     = express();
 var port    = parseInt(process.env.PORT, 10) || 8080;
 var request = require('request');
 var fs      = require('fs');
 var access = "";
 
-
+// view engine setup
+app.set('views', path.join(__dirname, 'app'));
+app.set('view engine', 'ejs');
 app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/app'));
   app.use(app.router);
 });
-
-var config = {
-  date: []
-}
 
 var list = [{
   index: 1,
@@ -181,6 +180,9 @@ app.get('/checkLogin',function(req,res){
     });
     res.json({result:"TRUE",msg:"",data:0});
   })
+})
+app.get('/getLocation',function(req,res){
+  res.render('getlocation')
 })
 app.post('/login',function(req, res){
   var params = req.body;
