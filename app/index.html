@@ -89,7 +89,7 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                status: 'location',
+                status: 'login',
                 allowShow: isWeiXin(),
                 config: {},
                 login_disabled: false,
@@ -109,11 +109,10 @@
                 var $_GET = this.getUrlParams();
                 this.getTime();
                 this.getConfig();
-                /* if(localStorage.getItem('code')){
+                if(localStorage.getItem('code')){
                     this.status = 'location';
                     this.getConfig(localStorage.getItem('code'));
-                } */
-                
+                }
                 
             },
             methods:{
