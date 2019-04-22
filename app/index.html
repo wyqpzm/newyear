@@ -31,17 +31,23 @@
                     <img width="100%" src="image/starMorning@2x.gif" alt="">
                 </div>
                 <div class="mainErea">
-                    <h2>上课了，请签到</h2>
+                    <h2 v-cloak>{{location_title}}</h2>
                     <p class="p1" v-cloak>现在是{{time_text}}</p>
                     <p class="p1 textFail" v-cloak>{{location_text}}</p> 
                     <div id="mapErea" class="mapErea"></div> 
                     <button class="clockBtn lg" :disabled="location_disabled">签到</button>
-                    <a href="#/record" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
+                    <a @click="goToRecords" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
                 </div>
             </div>
         </div>
         <div class='record' v-show="status=='record'">
-
+            <table>
+                <tr v-for="el in sign_records">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
         <!-- <div v-if="!allowShow" style="text-align:center;padding: 10px;">
             请在微信中打开
@@ -85,6 +91,7 @@
             data: {
                 status: 'location',
                 allowShow: isWeiXin(),
+                config: {},
                 login_disabled: false,
                 location_disabled: true,
                 button_text: '提交',
@@ -92,55 +99,80 @@
                     name: '',
                     code: ''
                 },
+                location_title: '上课了，请签到',
                 time_text: '',
-                location_text: '正在定位...'
+                location_text: '正在定位...',
+                sign_records: []
             },
             mounted: function(){
                 var vm = this;
                 var $_GET = this.getUrlParams();
+                this.getTime();
+                this.getConfig();
                 /* if(localStorage.getItem('code')){
                     this.status = 'location';
+                    this.getConfig(localStorage.getItem('code'));
                 } */
-                var date = new Date();
-                var date_year = date.getFullYear();
-                var date_month = date.getMonth()+1;
-                var date_date = date.getDate();
-                var date_time = zeroPad(2,date.getHours())+':'+zeroPad(2,date.getMinutes())+":"+zeroPad(2,date.getSeconds());
-                this.time_text = ' '+date_year+'年'+date_month+'月'+date_date+'日'+' '+date_time;
-                mapObj = new AMap.Map('mapErea',{
-                    resizeEnable: true
-                });
-                mapObj.plugin('AMap.Geolocation', function () {
-                    var geolocation = new AMap.Geolocation({
-                        enableHighAccuracy: true,//是否使用高精度定位，默认:true
-                        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-                        maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-                        convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-                        showButton: true,        //显示定位按钮，默认：true
-                        buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-                        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-                        showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-                        showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-                        panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-                        zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                    });
-                    console.log(geolocation);
-                    mapObj.addControl(geolocation);
-                    geolocation.getCurrentPosition();
-                    AMap.event.addListener(geolocation, 'complete', vm.locationComplete);//返回定位信息
-                    AMap.event.addListener(geolocation, 'error', vm.locationError);      //返回定位出错信息
-                });
-                /* axios.post('/info', {
-                    code: $_GET['code']
-                })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                }); */
+                
+                
             },
             methods:{
+                getTime(){
+                    var date = new Date();
+                    var date_year = date.getFullYear();
+                    var date_month = date.getMonth()+1;
+                    var date_date = date.getDate();
+                    var date_time = zeroPad(2,date.getHours())+':'+zeroPad(2,date.getMinutes())+":"+zeroPad(2,date.getSeconds());
+                    this.time_text = ' '+date_year+'年'+date_month+'月'+date_date+'日'+' '+date_time;
+                },
+                getConfig(){
+                    var vm = this;
+                    var date = new Date();
+                    var date_year = date.getFullYear();
+                    var date_month = zeroPad(2,date.getMonth()+1);
+                    var date_date = zeroPad(2,date.getDate());
+                    mapObj = new AMap.Map('mapErea',{
+                        resizeEnable: true
+                    });
+                    mapObj.plugin('AMap.Geolocation', function () {
+                        var geolocation = new AMap.Geolocation({
+                            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                            maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                            convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                            showButton: true,        //显示定位按钮，默认：true
+                            buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                            showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                            showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                            panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                            zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                        });
+                        console.log(geolocation);
+                        mapObj.addControl(geolocation);
+                        geolocation.getCurrentPosition();
+                        AMap.event.addListener(geolocation, 'complete', vm.locationComplete);//返回定位信息
+                        AMap.event.addListener(geolocation, 'error', vm.locationError);      //返回定位出错信息
+                    });
+                    axios.get('/getConfig', {
+                        params: {
+                            date: date_year+'-'+date_month+'-'+date_date
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        var data = response.data;
+                        if(data.result=="TRUE"){
+                            vm.config = data.data;
+                        }else{
+                            vm.location_title = data.msg;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                        alert("服务器连接失败，请重试")
+                    });
+                },
                 login(){
                     console.log("wing");
                     console.log(this.form);
@@ -185,6 +217,29 @@
                 locationError: function(data){
                     alert("定位失败");
                     alert(JSON.stringify(data));
+                },
+                goToRecords: function(){
+                    this.status  = "records";
+                    axios.get('/getRecords', {
+                        code: code,
+                        name: name
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        var data = response.data;
+                        console.log(data);
+                        if(data.result=="TRUE"){
+                            localStorage.setItem("code",code);
+                            vm.status = "location";
+                            console.log(vm.status);
+                        }else{
+                            alert("登录失败，请重试")
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                        alert("服务器连接失败，请重试")
+                    });
                 },
                 getUrlParams: function () {
                     var qs=location.search.length>0?location.search.substring(1):"";

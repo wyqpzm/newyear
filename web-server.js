@@ -1,9 +1,10 @@
 var express = require("express");
 var path = require('path');
 var app     = express();
-var port    = parseInt(process.env.PORT, 10) || 8080;
+var port    = parseInt(process.env.PORT, 10) || 80;
 var request = require('request');
 var fs      = require('fs');
+var config  = require('./config')
 var access = "";
 
 // view engine setup
@@ -184,6 +185,23 @@ app.get('/checkLogin',function(req,res){
 app.get('/getLocation',function(req,res){
   res.render('getlocation')
 })
+app.get('/getConfig',function(req,res){
+  var params = req.query;
+  var date = params.date;
+  if(config.date.indexOf(date)<0){
+    res.json({
+      result: 'FALSE',
+      msg: '未到上课时间',
+      data: {}
+    })
+  }else{
+    res.json({
+      result: 'TRUE',
+      msg: '',
+      data: config[date]
+    })
+  }
+})
 app.post('/login',function(req, res){
   var params = req.body;
   var name = params.name;
@@ -212,12 +230,37 @@ app.post('/login',function(req, res){
 })
 app.post('/location',function(req,res){
   var params = req.body;
-  var name = params.name;
   var code = params.code;
-  var openid = params.openid;
+  var date = params.date;
+  var location = params.location;
+  fs.readFile("./app/data/"+code+".json",function(err,data){
+    if(err){
+        console.error(err);
+        res.json({result:"FALSE",msg:"签到失败，请重试",data:""});
+    }
+    var person = JSON.parse(data.toString());
+    person.data[date] = location;
+    var str = JSON.stringify(person);//因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
+    fs.writeFile("./app/data/"+code+".json",str,function(err){
+        if(err){
+            console.error(err);
+            res.json({result:"FALSE",msg:"签到失败，请重试",data:""});
+        }
+        console.log('----------新增成功-------------');
+        res.json({result:"TRUE",msg:"",data:"签到成功"});
+    })
+  })
 })
-
-
+app.get('/getRecords',function(req,res){
+  fs.readFile("./app/data/"+code+".json",function(err,data){
+    if(err){
+      console.error(err);
+      res.json({result:"FALSE",msg:"获取签到记录失败，请重试",data:""});
+    }
+    var person = JSON.parse(data.toString());
+    res.json({result:"TRUE",msg:"",data:person.data});
+  })
+})
 var createNonceStr = function () {
   return Math.random().toString(36).substr(2, 15);
 };
