@@ -107,10 +107,9 @@
             mounted: function(){
                 var vm = this;
                 var $_GET = this.getUrlParams();
-                this.getTime();
-                this.getConfig();
                 if(localStorage.getItem('code')){
                     this.status = 'location';
+                    this.getTime();
                     this.getConfig(localStorage.getItem('code'));
                 }
                 
