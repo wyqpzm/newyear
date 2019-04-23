@@ -188,6 +188,9 @@ app.get('/getLocation',function(req,res){
 app.get('/clearInfo',function(req,res){
   res.render('clear')
 })
+app.get('/statistics',function(req,res){
+  res.render('statistics')
+})
 app.get('/getConfig',function(req,res){
   var params = req.query;
   var date = params.date;
@@ -282,6 +285,32 @@ app.post('/clear',function(req,res){
     res.json({result:"TRUE",msg:"",data:'confirm'});
   }else{
     res.json({result:"FALSE",msg:"code不在清除列表内",data:""});
+  }
+})
+app.post('/statistics',function(req,res){
+  var params = req.body;
+  var keyword = params.keyword;
+  var result = [];
+  var filepath = path.resolve('./app/data');
+  if(keyword=='kdjsoif'){
+    fs.readdir(filepath,function(err,files){
+      if(err){
+          console.warn(err)
+      }else{
+          //遍历读取到的文件列表
+          files.forEach(function(filename){
+
+            var filedir = path.join(filepath, filename);
+              //根据文件路径获取文件信息，返回一个fs.Stats对象
+            var data = fs.readFileSync(filedir,'utf-8');
+            var person = JSON.parse(data.toString());
+            result.push(person);
+          });
+          res.json({result:"TRUE",msg:"",data:{date: config.date,records: result}});
+      }
+    });
+  }else{
+    res.json({result:"FALSE",msg:"keyword错误",data:""});
   }
 })
 var createNonceStr = function () {

@@ -17,11 +17,10 @@
 
             },
             mounted: function(){
-                axios.post('/login', {
+                axios.post('/clear', {
                     code: localStorage.getItem('code')
                 })
                 .then(function (response) {
-                    console.log(response);
                     var data = response.data;
                     console.log(data);
                     if(data.result=="TRUE"){
