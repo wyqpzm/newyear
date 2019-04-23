@@ -188,9 +188,12 @@
                 checkTime(){
                     console.log(this.config);
                     this.getTime();
-                    var now = (new Date(this.current_date+' '+this.current_time)).getTime();
-                    var start = (new Date(this.current_date+' '+this.config.time.start)).getTime();
-                    var end = (new Date(this.current_date+' '+this.config.time.end)).getTime();
+                    var now_date = new Date(this.current_date+' '+this.current_time);
+                    var start_date = new Date(this.current_date+' '+this.config.time.start);
+                    var end_date = new Date(this.current_date+' '+this.config.time.end);
+                    var now = now_date.getTime();
+                    var start = start_date.getTime();
+                    var end = end_date.getTime();
                     console.log(now,start,end);
                     alert(now+'=='+start+'=='+end);
                     if(start<=now&&end>=now){
