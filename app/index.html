@@ -192,7 +192,7 @@
                     var start = (new Date(this.current_date+' '+this.config.time.start)).getTime();
                     var end = (new Date(this.current_date+' '+this.config.time.end)).getTime();
                     console.log(now,start,end);
-                    alert(this.current_date+' '+this.current_time+'=='+this.config.time.start+'=='+this.config.time.end);
+                    alert(now+'=='+start+'=='+end);
                     if(start<=now&&end>=now){
                         this.location_title = '上课了，请签到';
                         this.time_disabled = false;
