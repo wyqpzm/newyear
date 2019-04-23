@@ -184,10 +184,6 @@
                             vm.location_title = data.msg;
                         }
                     })
-                    .catch(function (error) {
-                        console.log(error)
-                        alert("服务器连接失败，请重试")
-                    });
                 },
                 checkTime(){
                     console.log(this.config);
@@ -196,6 +192,7 @@
                     var start = (new Date(this.current_date+' '+this.config.time.start)).getTime();
                     var end = (new Date(this.current_date+' '+this.config.time.end)).getTime();
                     console.log(now,start,end);
+                    alert(this.current_date+' '+this.current_time+'=='+this.config.time.start+'=='+this.config.time.end);
                     if(start<=now&&end>=now){
                         this.location_title = '上课了，请签到';
                         this.time_disabled = false;
@@ -221,23 +218,22 @@
                             name: name
                         })
                         .then(function (response) {
-                            console.log(response);
                             var data = response.data;
                             console.log(data);
                             if(data.result=="TRUE"){
                                 localStorage.setItem("code",code);
                                 vm.status = "location";
-                                this.getTime();
-                                this.getConfig();
+                                vm.getTime();
+                                vm.getConfig();
                             }else{
                                 alert("登录失败，请重试")
-                                this.login_disabled = false;
+                                vm.login_disabled = false;
                             }
                         })
                         .catch(function (error) {
                             console.log(error)
                             alert("服务器连接失败，请重试")
-                            this.login_disabled = false;
+                            vm.login_disabled = false;
                         });
                     }else{
                         alert("姓名和学号不能为空！")
@@ -268,8 +264,11 @@
                     alert("定位失败，请重试");
                 },
                 toSign(){
+                    var vm = this;
                     this.refresh();
                     if(!this.time_disabled&&!this.location_disabled){
+                        this.time_disabled = true;
+                        this.location_disabled = true;
                         axios.post('/location', {
                             code: localStorage.getItem('code'),
                             date: this.current_date,
@@ -277,23 +276,22 @@
                             location: this.current_location
                         })
                         .then(function (response) {
-                            console.log(response);
                             var data = response.data;
                             console.log(data);
                             if(data.result=="TRUE"){
-                                localStorage.setItem("code",code);
-                                vm.status = "location";
-                                this.getTime();
-                                this.getConfig();
+                                alert("签到成功")
+                                vm.goToRecords();
                             }else{
-                                alert("登录失败，请重试")
-                                this.login_disabled = false;
+                                alert("签到失败，请重试")
+                                vm.time_disabled = false;
+                                vm.location_disabled = false;
                             }
                         })
                         .catch(function (error) {
                             console.log(error)
                             alert("服务器连接失败，请重试")
-                            this.login_disabled = false;
+                            vm.time_disabled = false;
+                            vm.location_disabled = false;
                         });
                     }
                 },
@@ -306,7 +304,6 @@
                         }
                     })
                     .then(function (response) {
-                        console.log(response);
                         var data = response.data;
                         console.log(data);
                         if(data.result=="TRUE"){
