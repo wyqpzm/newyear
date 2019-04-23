@@ -88,6 +88,11 @@ h1,h2,h3{
     margin: 15px 0;
     height: 150px;
 }
+#btn_refresh{
+    position: absolute;
+    right: 16px;
+    top: 18px;
+}
 .clockBtn {
     display: block;
     width: 100%;
@@ -104,7 +109,22 @@ h1,h2,h3{
     background: #66AE77;
     color: #fff;
 }
-
+#header_record{
+    color: #fff;
+    font-size: 18px;
+    margin: 0;
+    padding: 15px 5px;
+    text-align: center;
+    background: #3399ff;
+}
+.record th{
+    text-align: center;
+    color: #333;
+}
+.record td{
+    text-align: center;
+    color: #666;
+}
 [v-cloak] {
     display: none!important;
 }

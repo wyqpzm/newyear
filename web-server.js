@@ -185,6 +185,9 @@ app.get('/checkLogin',function(req,res){
 app.get('/getLocation',function(req,res){
   res.render('getlocation')
 })
+app.get('/clearInfo',function(req,res){
+  res.render('clear')
+})
 app.get('/getConfig',function(req,res){
   var params = req.query;
   var date = params.date;
@@ -220,6 +223,7 @@ app.post('/login',function(req, res){
       fs.writeFile("./app/data/"+code+".json",str,function(err){
         if(err){
             console.error(err);
+            console.error(code);
             res.json({result:"FALSE",msg:"登陆失败，请重试",data:""});
         }
         console.log('----------新增成功-------------');
@@ -233,17 +237,23 @@ app.post('/location',function(req,res){
   var code = params.code;
   var date = params.date;
   var location = params.location;
+  var time = params.time;
   fs.readFile("./app/data/"+code+".json",function(err,data){
     if(err){
         console.error(err);
+        console.error(code);
         res.json({result:"FALSE",msg:"签到失败，请重试",data:""});
     }
     var person = JSON.parse(data.toString());
-    person.data[date] = location;
+    person.data[date] = {
+      location: location,
+      time: time
+    };
     var str = JSON.stringify(person);//因为nodejs的写入文件只认识字符串或者二进制数，所以把json对象转换成字符串重新写入json文件中
     fs.writeFile("./app/data/"+code+".json",str,function(err){
         if(err){
             console.error(err);
+            console.error(code);
             res.json({result:"FALSE",msg:"签到失败，请重试",data:""});
         }
         console.log('----------新增成功-------------');
@@ -252,14 +262,27 @@ app.post('/location',function(req,res){
   })
 })
 app.get('/getRecords',function(req,res){
+  var params = req.query;
+  var code = params.code;
   fs.readFile("./app/data/"+code+".json",function(err,data){
     if(err){
       console.error(err);
+      console.error(code);
       res.json({result:"FALSE",msg:"获取签到记录失败，请重试",data:""});
     }
     var person = JSON.parse(data.toString());
     res.json({result:"TRUE",msg:"",data:person.data});
   })
+})
+app.post('/clear',function(req,res){
+  var params = req.body;
+  var code = params.code;
+  var confirm = ['10034123'];
+  if(confirm.indexOf(code)>-1){
+    res.json({result:"TRUE",msg:"",data:'confirm'});
+  }else{
+    res.json({result:"FALSE",msg:"code不在清除列表内",data:""});
+  }
 })
 var createNonceStr = function () {
   return Math.random().toString(36).substr(2, 15);

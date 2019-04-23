@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clear</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            mounted: function(){
+                axios.post('/login', {
+                    code: localStorage.getItem('code')
+                })
+                .then(function (response) {
+                    console.log(response);
+                    var data = response.data;
+                    console.log(data);
+                    if(data.result=="TRUE"){
+                        localStorage.removeItem("code");
+                        document.getElementById("app").innerHTML = "清除成功";
+                    }else{
+                        alert(data.msg)
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error)
+                    alert("服务器连接失败，请重试")
+                    this.login_disabled = false;
+                });
+            }
+        })
+    </script>
+</body>
+</html>
