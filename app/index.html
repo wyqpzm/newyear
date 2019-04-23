@@ -35,7 +35,7 @@
                     <p class="p1" v-cloak>现在是{{time_text}}</p>
                     <p class="p1 textFail" v-cloak>{{location_text}}<em style="color:#ff6600" v-show="distance_disabled">({{distance_warn}})</em></p> 
                     <div id="mapErea" class="mapErea"></div> 
-                    <button class="clockBtn lg" :disabled="location_disabled||time_disabled">签到</button>
+                    <button class="clockBtn lg" :disabled="location_disabled||time_disabled" @click="toSign">签到</button>
                     <a @click="goToRecords" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
                     <button id="btn_refresh" class="btn btn-default btn-sm" @click="refresh">刷新</button>
                 </div>
@@ -188,14 +188,14 @@
                 checkTime(){
                     console.log(this.config);
                     this.getTime();
-                    var now_date = new Date(this.current_date+'T'+this.current_time);
-                    var start_date = new Date(this.current_date+'T'+this.config.time.start);
-                    var end_date = new Date(this.current_date+'T'+this.config.time.end);
+                    var date = this.current_date.replace(/-/g,'/');
+                    var now_date = new Date(date+' '+this.current_time);
+                    var start_date = new Date(date+' '+this.config.time.start);
+                    var end_date = new Date(date+' '+this.config.time.end);
                     var now = now_date.getTime();
                     var start = start_date.getTime();
                     var end = end_date.getTime();
                     console.log(now,start,end);
-                    alert(now+'=='+start+'=='+end);
                     if(start<=now&&end>=now){
                         this.location_title = '上课了，请签到';
                         this.time_disabled = false;
