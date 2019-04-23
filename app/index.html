@@ -10,56 +10,58 @@
 </head>
 <body>
     <div id="app">
-        <div class="main" v-show="status=='login'">
-            <div class="bg-top">
-                <image style="width:180px;" src="image/logo_hx.png"></image>
-            </div>
-            <div class="login-box">
-                <div class="content">
-                    <h2 class="title">登陆</h2>
-                    <input type="text" class="input" placeholder="姓名" v-model="form.name"/>
-                    <input type="text" class="input" placeholder="学号" v-model="form.code"/>
-                    <div>
-                        <button class="btn btn-success" style="margin-top:15px;width: 100%;" :disabled="login_disabled" @click="login">{{button_text}}</button>
+        <div v-if="allowShow">
+            <div class="main" v-show="status=='login'">
+                <div class="bg-top">
+                    <image style="width:180px;" src="image/logo_hx.png"></image>
+                </div>
+                <div class="login-box">
+                    <div class="content">
+                        <h2 class="title">登陆</h2>
+                        <input type="text" class="input" placeholder="姓名" v-model="form.name"/>
+                        <input type="text" class="input" placeholder="学号" v-model="form.code"/>
+                        <div>
+                            <button class="btn btn-success" style="margin-top:15px;width: 100%;" :disabled="login_disabled" @click="login">{{button_text}}</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="location" v-show="status=='location'">
-            <div class="clockApp">
-                <div class="welcomePic">
-                    <img width="100%" src="image/starMorning@2x.gif" alt="">
-                </div>
-                <div class="mainErea">
-                    <h2 v-cloak>{{location_title}}</h2>
-                    <p class="p1" v-cloak>现在是{{time_text}}</p>
-                    <p class="p1 textFail" v-cloak>{{location_text}}<em style="color:#ff6600" v-show="distance_disabled">({{distance_warn}})</em></p> 
-                    <div id="mapErea" class="mapErea"></div> 
-                    <button class="clockBtn lg" :disabled="location_disabled||time_disabled" @click="toSign">签到</button>
-                    <a @click="goToRecords" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
-                    <button id="btn_refresh" class="btn btn-default btn-sm" @click="refresh">刷新</button>
+            <div class="location" v-show="status=='location'">
+                <div class="clockApp">
+                    <div class="welcomePic">
+                        <img width="100%" src="image/starMorning@2x.gif" alt="">
+                    </div>
+                    <div class="mainErea">
+                        <h2 v-cloak>{{location_title}}</h2>
+                        <p class="p1" v-cloak>现在是{{time_text}}</p>
+                        <p class="p1 textFail" v-cloak>{{location_text}}<em style="color:#ff6600" v-show="distance_disabled">({{distance_warn}})</em></p> 
+                        <div id="mapErea" class="mapErea"></div> 
+                        <button class="clockBtn lg" :disabled="location_disabled||time_disabled" @click="toSign">签到</button>
+                        <a @click="goToRecords" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
+                        <button id="btn_refresh" class="btn btn-default btn-sm" @click="refresh">刷新</button>
+                    </div>
                 </div>
             </div>
+            <div class='record' v-show="status=='record'">
+                <h2 id="header_record">
+                    <div style="float:left;color:#eee;" @click="backToLocation">返回</div>
+                    签到记录
+                </h2>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>日期</th>
+                        <th>签到时间</th>
+                    </tr>
+                    <tr v-for="(value,key) in sign_records">
+                        <td>{{key}}</td>
+                        <td>{{value.time}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div class='record' v-show="status=='record'">
-            <h2 id="header_record">
-                <div style="float:left;color:#eee;" @click="backToLocation">返回</div>
-                签到记录
-            </h2>
-            <table class="table table-bordered">
-                <tr>
-                    <th>日期</th>
-                    <th>签到时间</th>
-                </tr>
-                <tr v-for="(value,key) in sign_records">
-                    <td>{{key}}</td>
-                    <td>{{value.time}}</td>
-                </tr>
-            </table>
-        </div>
-        <!-- <div v-if="!allowShow" style="text-align:center;padding: 10px;">
+        <div v-if="!allowShow" style="text-align:center;padding: 10px;">
             请在微信中打开
-        </div> -->
+        </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
