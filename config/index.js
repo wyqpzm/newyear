@@ -1,8 +1,8 @@
 const time = [{
-    start: '08:00',
+    start: '07:30',
     end: '08:30'
   },{
-    start: '10:00',
+    start: '09:30',
     end: '10:30'
 }];
 const location = [{
