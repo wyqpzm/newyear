@@ -188,9 +188,9 @@
                 checkTime(){
                     console.log(this.config);
                     this.getTime();
-                    var now_date = new Date(this.current_date+' '+this.current_time);
-                    var start_date = new Date(this.current_date+' '+this.config.time.start);
-                    var end_date = new Date(this.current_date+' '+this.config.time.end);
+                    var now_date = new Date(this.current_date+'T'+this.current_time);
+                    var start_date = new Date(this.current_date+'T'+this.config.time.start);
+                    var end_date = new Date(this.current_date+'T'+this.config.time.end);
                     var now = now_date.getTime();
                     var start = start_date.getTime();
                     var end = end_date.getTime();
