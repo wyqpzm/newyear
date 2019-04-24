@@ -100,7 +100,7 @@
         var vm = new Vue({
             el: '#app',
             data: {
-                status: 'login',
+                status: 'location',
                 allowShow: isWeiXin(),
                 config: {},
                 login_disabled: false,
@@ -124,11 +124,13 @@
             mounted: function(){
                 var vm = this;
                 var $_GET = this.getUrlParams();
-                if(localStorage.getItem('code')){
+                /* if(localStorage.getItem('code')){
                     this.status = 'location';
                     this.getTime();
                     this.getConfig();
-                }
+                } */
+                this.getTime();
+                    this.getConfig();
                 
             },
             methods:{
