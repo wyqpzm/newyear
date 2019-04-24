@@ -96,11 +96,12 @@
             var d = R * c;                                              // Distance in m
             return d;
         }
+        var severUrl = 'http://184.170.212.193';
         var mapObj,geolocation;
         var vm = new Vue({
             el: '#app',
             data: {
-                status: 'location',
+                status: 'login',
                 allowShow: isWeiXin(),
                 config: {},
                 login_disabled: false,
@@ -129,28 +130,6 @@
                     this.getTime();
                     this.getConfig();
                 }
-                mapObj = new AMap.Map('mapErea',{
-                                resizeEnable: true
-                            });
-                            mapObj.plugin('AMap.Geolocation', function () {
-                                geolocation = new AMap.Geolocation({
-                                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
-                                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-                                    maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-                                    convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-                                    showButton: true,        //显示定位按钮，默认：true
-                                    buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-                                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-                                    showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-                                    showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-                                    panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-                                    zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                                });
-                                mapObj.addControl(geolocation);
-                                geolocation.getCurrentPosition();
-                                AMap.event.addListener(geolocation, 'complete', vm.locationComplete);//返回定位信息
-                                AMap.event.addListener(geolocation, 'error', vm.locationError);      //返回定位出错信息
-                            });
                 
             },
             methods:{
@@ -171,7 +150,7 @@
                     var date_month = zeroPad(2,date.getMonth()+1);
                     var date_date = zeroPad(2,date.getDate());
                     
-                    axios.get('/getConfig', {
+                    axios.get(severUrl+'/getConfig', {
                         params: {
                             date: this.current_date
                         }
@@ -240,7 +219,7 @@
                     if(name&&code){
                         this.button_text = '提交中……';
                         this.login_disabled = true;
-                        axios.post('/login', {
+                        axios.post(severUrl+'/login', {
                             code: code,
                             name: name
                         })
@@ -296,7 +275,7 @@
                     if(!this.time_disabled&&!this.location_disabled){
                         this.time_disabled = true;
                         this.location_disabled = true;
-                        axios.post('/location', {
+                        axios.post(severUrl+'/location', {
                             code: localStorage.getItem('code'),
                             date: this.current_date,
                             time: this.current_time,
@@ -325,7 +304,7 @@
                 goToRecords: function(){
                     var vm = this;
                     this.status  = "record";
-                    axios.get('/getRecords', {
+                    axios.get(severUrl+'/getRecords', {
                         params: {
                             code: localStorage.getItem('code')
                         }
