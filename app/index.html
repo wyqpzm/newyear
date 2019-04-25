@@ -216,6 +216,10 @@
                     var code = this.form.code;
                     var vm = this;
                     if(name&&code){
+                        if(isNaN(Number(code))){
+                            alert('请填写正确的学号');
+                            return false;
+                        }
                         this.button_text = '提交中……';
                         this.login_disabled = true;
                         axios.post('/login', {
