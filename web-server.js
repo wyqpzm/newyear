@@ -1,7 +1,7 @@
 var express = require("express");
 var path = require('path');
 var app     = express();
-var port    = parseInt(process.env.PORT, 10) || 443;
+var port    = parseInt(process.env.PORT, 10) || 80;
 var request = require('request');
 var fs      = require('fs');
 var config  = require('./config')
