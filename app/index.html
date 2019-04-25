@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-        <div >
+        <div v-if="allowShow">
             <div class="main" v-show="status=='login'">
                 <div class="bg-top">
                     <image style="width:180px;" src="image/logo_hx.png"></image>
@@ -59,9 +59,9 @@
                 </table>
             </div>
         </div>
-        <!-- <div v-if="!allowShow" style="text-align:center;padding: 10px;">
+        <div v-if="!allowShow" style="text-align:center;padding: 10px;">
             请在微信中打开
-        </div> -->
+        </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
