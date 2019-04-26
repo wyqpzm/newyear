@@ -3,7 +3,7 @@ const time = [{
     end: '08:30'
   },{
     start: '09:30',
-    end: '10:30'
+    end: '11:00'
 }];
 const location = [{
     lat: 30.639712,
