@@ -259,7 +259,7 @@
                     };
                     var distance = getDistanceFromLatLonInM(data.position.lat, data.position.lng,this.config.location.lat,this.config.location.lng);
                     console.log(distance);
-                    if(distance<200){
+                    if(distance<500){
                         this.distance_disabled = false;
                         this.location_disabled = false;
                     }else{
