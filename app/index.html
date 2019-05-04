@@ -270,7 +270,24 @@
                     // alert(distance)
                 },
                 locationError: function(data){
-                    alert("定位失败，请重试");
+                    switch (data.info) {
+                        case 'PERMISSION_DENIED':
+                            address = '浏览器阻止了定位操作';
+                            alert('浏览器阻止了定位操作');
+                            break;
+                        case 'POSITION_UNAVAILBLE':
+                            address = '无法获得当前位置';
+                            alert('无法获得当前位置');
+                            break;
+                        case 'TIMEOUT':
+                            address = '定位超时';
+                            alert('定位超时');
+                            break;
+                        default:
+                            address = '未知错误';
+                            alert('定位失败');
+                            break;
+                    }
                 },
                 toSign(){
                     var vm = this;
