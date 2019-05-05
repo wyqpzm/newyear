@@ -5,8 +5,8 @@ const time = [{
     start: '09:30',
     end: '10:30'
 },{
-    start: '13:30',
-    end: '14:30'
+    start: '16:25',
+    end: '17:25'
 }];
 const location = [{
     lat: 30.639712,
@@ -26,8 +26,8 @@ const config = {
         location: location[1]
     },
     "2019-05-05":{
-        time: time[1],
-        location: location[1]
+        time: time[2],
+        location: location[0]
     },
     "2019-05-08":{
         time: time[0],
