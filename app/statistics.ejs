@@ -40,7 +40,10 @@
                     <th>次数</th>
                 </tr>
                 <tr v-for="el in records">
-                    <td>{{el.name}}</td>
+                    <td>
+                        <div>{{el.name}}</div>
+                        <div>{{el.code}}</div>
+                    </td>
                     <td v-for="d in date">{{el.data[d]?el.data[d].time:''}}</td>
                     <td>{{Object.keys(el.data).length}}</td>
                 </tr>
