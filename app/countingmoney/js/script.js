@@ -57,7 +57,7 @@
                 },400, function () {
                     $(this).remove();
                     i+=100;
-                    $(".money_add span").html("￥"+i)
+                    $(".money_add span").html(i)
                 });
                 setTimeout(function () {
                     money_en.append('<img src="countingmoney/images/4.jpg">');

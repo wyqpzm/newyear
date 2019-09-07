@@ -18,7 +18,7 @@ li{list-style: none}
 .money .slg img{width: 65%; margin-top: 1.8rem;  }
 .money .slg_two{width: 100%; text-align: center;}
 .money .slg_two img{width: 80%;margin-top: 2rem; }
-.money .up{width: 100%; text-align: center;}
+.money .up{width: 100%; text-align: center;z-index: 10;position: relative;}
 .money .up img{width:.6rem; margin-top: 1rem;}
 .money_two{display: none;}
 .money_add{width: 100%; text-align: center;}
