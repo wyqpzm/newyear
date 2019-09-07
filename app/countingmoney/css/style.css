@@ -1,0 +1,106 @@
+*{margin:0;padding: 0;}
+html,body{ width: 100%; height: 100%; overflow: hidden; max-width: 640px; margin: 0 auto;}
+li{list-style: none}
+.index{width: 100%; height: 100%; background: url("../images/index_bg.jpg") center no-repeat; background-size: 100% 100%}
+.title{width: 100%;}
+.title .logo{ float: left; width: 40%;  max-width: 160px; margin: .5rem 0 0 .5rem;}
+.title .gz{ float: right; width: 20%; max-width: 90px; margin: .5rem .5rem 0 0; }
+.index_btn{width: 100%; position: absolute; bottom: 1rem; max-width: 640px; text-align: center;}
+.index_btn img{width: 50%;}
+
+.money{width: 100%; height:100%;  overflow: hidden; text-align: center;  background: url('../images/game_bg.jpg') no-repeat center; background-size: 100% 100%;}
+.money_en{width: 100%; height: 100%;  overflow: hidden;position: absolute; bottom: 0;   z-index: 5; max-width: 640px;}
+.money_en img{width: 50%;  position: absolute; bottom: -7rem; left:50%; margin-left: -25%;}
+.add img{ bottom: -2rem !important;}
+.money_pos{width: 100%; height: 100%;  overflow: hidden;position: absolute; bottom: 0;z-index: 2; max-width: 640px;}
+.money_pos img{width: 50%; position: absolute; bottom: -7rem; left:50%; margin-left: -25%;}
+.money .slg{width: 100%; text-align: center;  position: absolute; }
+.money .slg img{width: 65%; margin-top: 1.8rem;  }
+.money .slg_two{width: 100%; text-align: center;}
+.money .slg_two img{width: 80%;margin-top: 2rem; }
+.money .up{width: 100%; text-align: center;}
+.money .up img{width:.6rem; margin-top: 1rem;}
+.money_two{display: none;}
+.money_add{width: 100%; text-align: center;}
+.money_add span{ margin-top:1rem;display: inline-block;background-color:#c32105;width: 50%; line-height:1.1rem; font-size: .5rem; color:#fff; border-radius: 30px;}
+.money_time{width: 100%; text-align: center;}
+.money_time img,span{vertical-align: middle}
+.money_time { margin-top:.5rem;display: inline-block; background-color:#c32105; width: 40%; line-height:1rem; font-size: .5rem; color:#fff; border-radius: 30px;}
+.money_time img{width: 30px;}
+.ri{display: none}
+.p{ position: absolute; width: 50px; }
+.p img{animation: hovertreespin 30s linear 0s infinite; width: 100%; animation-duration:.3s;}
+.p1{left:1rem;  top:-2rem;   animation: hovertreespinp 1.2s linear .5s infinite;}
+.p2{left: 2rem;  top:-2.1rem;   animation: hovertreespinp 1.2s linear 1s infinite;}
+.p3{left: 3rem;  top:-3rem;   animation: hovertreespinp 1.2s linear 0s infinite;}
+.p4{left: 5rem; top:-2.3rem;   animation: hovertreespinp 1.2s linear 2s infinite;}
+.p5{left: 6rem; top:-4rem;   animation: hovertreespinp 1.2s linear 3s infinite;}
+.p6{right: 1rem; top:-4rem;   animation: hovertreespinp 1.2s linear 3s infinite;}
+@keyframes hovertreespin {
+    0%{
+        transform: rotate(0deg)
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+@keyframes hovertreespinp {
+    0%{
+        margin-top: 0;
+    }
+    100%{
+        margin-top: 1000px;
+
+    }
+}
+
+.detail{width: 100%; height: 100%; background: url("../images/detail_bg.jpg") center no-repeat; background-size: 100% 100%;}
+.user_icon,.user_info{width: 100%;}
+.user_icon{text-align: center;}
+.user_icon img{display: inline-block; width: 120px; margin-top: .5rem;}
+.user_icon p{ color:#fff; font-size: .8rem; margin-top: .1rem;}
+.detail_bottom{ width: 100%;  overflow: hidden; position: absolute; bottom: 1rem;}
+.detail_bottom ul li{width: 50%; float: left; text-align: center}
+.detail_bottom ul li img{width: 95%}
+.detail .title { text-align: right;}
+.detail .title img{ text-align: right; display:inline-block; width: 40%; margin: .8rem .5rem 0  0}
+
+.fuck{width: 100%; height: 100%; position: fixed; top:0;  max-width: 640px; background: rgba(0,0,0,.85); z-index: 4; display: none}
+.fuck .title{width: 100%;  margin: .1rem auto; border-bottom: 1px solid #a8a8a8;  }
+.fuck .title .active{ background: url("../images/up_this.png") bottom  no-repeat; background-size: .6rem;}
+.fuck .title ul{overflow: hidden}
+.fuck .title ul li{width: 33.33%; text-align: center; float: left; font-size: .4rem; color:#fff; box-sizing: border-box; padding: .5rem 0;}
+.fuck .title ul li span{box-sizing: border-box; border-right: 1px solid #969696; width: 100%; display: inline-block;}
+.fuck_info{width: 90%; margin: .6rem auto; height: 65%; overflow-y: auto;  display: none;}
+.fuck .box{ padding: .2rem .4rem; background-color: #fff; display: inline-block; font-size: .4rem;}
+.fuck_info p{ color:#fff; margin: .34rem auto; font-size: .35rem;}
+
+.fuck_info .blod li{font-weight: bold; font-size: .45rem; float: left; width: 25%; text-align: center; color:#fff;}
+.dq{ padding-left: .5rem; display:none}
+.list{ width: 100%;}
+.list ul{ overflow: hidden; width: 100%; display: inline-block; margin-top: .25rem;}
+.list ul li{ font-size: .4rem; float: left; width: 25%; text-align: center; color:#fff;  height: 1rem; line-height: 1rem; display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+.list .img img{width:1rem;}
+
+.close{ width: 3rem; margin: 1rem auto;height:1rem;text-align: center; background: url("../images/m.png") center no-repeat; background-size: 100% 1rem;}
+.close p{font-size: .55rem; height: 100%;  color:#fff;  text-align: center; width: 100%; display: inline-block; line-height:1rem; text-shadow: 1px 1px 3px black; font-family:pictos;letter-spacing:3px}
+.wx_fx{width: 100%; height: 100%; position: fixed; text-align: right; top:0;  max-width: 640px; background: rgba(0,0,0,.85); z-index: 4; display: none }
+.wx_fx img{width:5rem; margin:  .5rem .1rem 0 0;}
+
+
+.user_info{ width: 100%; height: 100%; position: fixed;max-width: 640px; top:0; z-index: 2;  display:none;}
+.user_info_one{ width: 100%; height: 100%;background: rgba(0,0,0,0.5);display: box;  display: -webkit-box; -webkit-box-pack:center;  -webkit-box-align:center;}
+.user_info_two{ width: 80%; margin: 0 auto; background: white; border-radius: 5px;}
+.contact :focus{outline:0}
+.contact{width:100%;height:auto;background:#f6f6f6;margin:40px auto;}
+.contact ul{width:100%;margin:0 auto}
+.contact ul li{border-bottom:1px solid #dfdfdf;list-style:none;padding:12px;text-align:left;}
+.contact ul li label{width:2rem;display:inline-block;float:left;font-size: .35rem; padding: 3px 0; line-height:28px;}
+.contact ul li input[type=password],.contact ul li input[type=text]{width:60%;height:20px;font-size: .35rem;border:1px solid #aaa;padding:3px 8px;border-radius:5px}
+.contact ul li input[type=text]{transition:padding .25s;-o-transition:padding .25s;-moz-transition:padding .25s;-webkit-transition:padding .25s}
+.contact ul li input[type=password]{transition:padding .25s;-o-transition:padding .25s;-moz-transition:padding .25s;-webkit-transition:padding .25s}
+.contact ul li input:focus{padding-right:20px}
+.footer{ width: 50%; margin: 50px auto; text-align: center; border:1px solid #231815; border-radius: 5px;}
+.footer a{  font-size: .38rem;letter-spacing: 3px; width:100%;color:rgba(255,255,255,0.8); margin: 2% auto; display: inline-block; color:#231815; vertical-align:middle}
+.footer:active {  background-color: #eee;}

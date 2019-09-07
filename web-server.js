@@ -191,6 +191,15 @@ app.get('/clearInfo',function(req,res){
 app.get('/statistics',function(req,res){
   res.render('statistics')
 })
+app.get('/game',function(req,res){
+  res.render('countingmoney/game')
+})
+app.get('/detail',function(req,res){
+  res.render('countingmoney/detail')
+})
+app.get('/game-index',function(req,res){
+  res.render('countingmoney/index')
+})
 app.get('/getConfig',function(req,res){
   var params = req.query;
   var date = params.date;
