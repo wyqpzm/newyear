@@ -34,10 +34,17 @@
                     var time= setInterval(function () {
                         $(".money_time span").html(y);
                         if(y<=0){
+                            count = $(".money_add span").html();
                             clearInterval(time);
                             $(".money_en").remove();
                             $(".ri").hide();
-                            window.location.href="/detail";
+                            $.post('/submitGame',{
+                                number: number,
+                                score: count
+                            },function(res){
+                                window.location.href="/detail";
+                            })
+                            
                         }
                         y--;
                     },1000);
@@ -67,8 +74,24 @@
         document.addEventListener("WeixinJSBridgeReady", function () {
             music.load();
         }, false);
-
-
+        $('#game-start').click(function(){
+            console.log($('#phone').val());
+            if(!$('#phone').val()){
+                alert("请填写手机号")
+            }else{
+                $('#modal button').prop("disabled", true).html('开始……')
+                number = $('#phone').val();
+                $.get('/getGameConfig',function(res){
+                    console.log(res);
+                    $('#modal button').prop("disabled", false).html('开始')
+                    if(res.data.start){
+                        $('#modal').remove()
+                    }else{
+                        alert('游戏还未开始')
+                    }
+                })
+            }
+        })
 
 
     });

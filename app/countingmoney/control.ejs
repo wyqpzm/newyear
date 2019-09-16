@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <style type="text/css">
+        #wrapper{
+            padding: 20px;
+        }
+        #number{
+            width: 100%;
+            border: 1px solid #eee;
+            font-size: 18px;
+            padding: 10px 5px;
+            border-radius: 5px;
+        }
+        label{
+            font-size: 18px;
+        }
+        #wrapper button{
+            width: 100%;
+            background:cornflowerblue;
+            color:white;
+            border: none;
+            font-size: 18px;
+            padding: 10px 0;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+    <script type="text/javascript" src="countingmoney/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $.get('/getGameConfig',function(res){
+                var data = res.data;
+                console.log(data);
+                var number = data.number;
+                var start = data.start=='true';
+                var end = data.end=='true';
+                $('#number').val(number);
+                $('#start').prop('checked',start);
+                $('#end').prop('checked',end);
+            })
+            $('#submit').click(function(){
+                console.log($('#number').val(),$('#start').prop('checked'),$('#end').prop('checked'));
+                var params = {
+                    number: $('#number').val(),
+                    start: $('#start').prop('checked'),
+                    end: $('#end').prop('checked')
+                }
+                $.post('/setGameConfig',params,function(res){
+                    alert(res.data)
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div style="margin-bottom: 15px;">
+            <input id="number" type="text" placeholder="手机号">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>状态：</label><input id="start" type="radio" name="switch">开始 <input id="end" type="radio" name="switch">结束
+        </div>
+        <div>
+            <button id="submit">确定</button>
+        </div>
+    </div>
+</body>
+</html>

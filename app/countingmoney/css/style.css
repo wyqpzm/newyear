@@ -71,7 +71,7 @@ li{list-style: none}
 .fuck .title ul{overflow: hidden}
 .fuck .title ul li{width: 33.33%; text-align: center; float: left; font-size: .4rem; color:#fff; box-sizing: border-box; padding: .5rem 0;}
 .fuck .title ul li span{box-sizing: border-box; border-right: 1px solid #969696; width: 100%; display: inline-block;}
-.fuck_info{width: 90%; margin: .6rem auto; height: 65%; overflow-y: auto;  display: none;}
+.fuck_info{width: 90%; margin: .6rem auto; height: 65%; overflow-y: auto;}
 .fuck .box{ padding: .2rem .4rem; background-color: #fff; display: inline-block; font-size: .4rem;}
 .fuck_info p{ color:#fff; margin: .34rem auto; font-size: .35rem;}
 
@@ -104,3 +104,51 @@ li{list-style: none}
 .footer{ width: 50%; margin: 50px auto; text-align: center; border:1px solid #231815; border-radius: 5px;}
 .footer a{  font-size: .38rem;letter-spacing: 3px; width:100%;color:rgba(255,255,255,0.8); margin: 2% auto; display: inline-block; color:#231815; vertical-align:middle}
 .footer:active {  background-color: #eee;}
+
+html,body{
+    height: 100%;
+}
+div,input{
+    box-sizing: border-box;
+}
+#modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+#modal .mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5)
+}
+#modal .content{
+    background: #fff;
+    width: 90%;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    margin-top: -100px;
+    border-radius: 5px;
+    padding: 15px;
+}
+#modal input{
+    width: 100%;
+    border: 1px solid #eee;
+    font-size: 18px;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+#modal button{
+    width: 100%;
+    background:cornflowerblue;
+    color:white;
+    border: none;
+    font-size: 18px;
+    padding: 10px 0;
+    border-radius: 5px;
+    outline: none;
+}

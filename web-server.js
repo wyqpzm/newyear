@@ -6,6 +6,7 @@ var request = require('request');
 var fs      = require('fs');
 var config  = require('./config')
 var access = "";
+var game_score = [];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app'));
@@ -197,8 +198,8 @@ app.get('/game',function(req,res){
 app.get('/detail',function(req,res){
   res.render('countingmoney/detail')
 })
-app.get('/game-index',function(req,res){
-  res.render('countingmoney/index')
+app.get('/dashboard',function(req,res){
+  res.render('countingmoney/control')
 })
 app.get('/getConfig',function(req,res){
   var params = req.query;
@@ -216,6 +217,55 @@ app.get('/getConfig',function(req,res){
       data: config[date]
     })
   }
+})
+app.get('/getGameConfig',function(req,res){
+  fs.readFile("./config/game.json",function(err,data){
+    if(err){
+        console.error(err);
+        res.json({result:"FALSE",msg:"获取失败，请重试",data:""});
+    }
+    console.log('----------获取配置成功-------------');
+    res.json({
+      result: 'TRUE',
+      msg: '',
+      data: JSON.parse(data.toString())
+    })
+  })
+  
+})
+app.post('/setGameConfig',function(req,res){
+  var params = req.body;
+  console.log(params);
+  var str = JSON.stringify(params)
+  fs.writeFile("./config/game.json",str,function(err){
+    if(err){
+        console.error(err);
+        res.json({result:"FALSE",msg:"设置失败，请重试",data:""});
+    }
+    console.log('----------设置配置成功-------------');
+    res.json({result:"TRUE",msg:"",data:"设置成功"});
+  })
+})
+app.post('/submitGame',function(req,res){
+  var params = req.body;
+  var number = params.number;
+  var score = params.score;
+  game_score.push({
+    number: number,
+    score: score
+  });
+  res.json({
+    result: 'TRUE',
+    msg: '',
+    data: ''
+  })
+})
+app.get('/getGameScore',function(req,res){
+  res.json({
+    result: 'TRUE',
+    msg: '',
+    data: game_score
+  })
 })
 app.post('/login',function(req, res){
   var params = req.body;
