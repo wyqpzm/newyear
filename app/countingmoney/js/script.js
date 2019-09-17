@@ -84,7 +84,7 @@
                 $.get('/getGameConfig',function(res){
                     console.log(res);
                     $('#modal button').prop("disabled", false).html('开始')
-                    if(res.data.start){
+                    if(res.data.start=='true'){
                         $('#modal').remove()
                     }else{
                         alert('游戏还未开始')

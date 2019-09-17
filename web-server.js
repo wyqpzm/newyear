@@ -236,6 +236,18 @@ app.get('/getGameConfig',function(req,res){
 app.post('/setGameConfig',function(req,res){
   var params = req.body;
   console.log(params);
+  if(params.end=='true'){
+    console.log("update game_score");
+    game_score.sort(function(a,b){
+        return b.score-a.score
+    })
+    if(game_score[0]){
+      game_score.unshift({
+        number: params.number,
+        score: Number(game_score[0].score)+Math.round(Math.random()*10)*100
+      })
+    }
+  }
   var str = JSON.stringify(params)
   fs.writeFile("./config/game.json",str,function(err){
     if(err){
@@ -265,6 +277,14 @@ app.get('/getGameScore',function(req,res){
     result: 'TRUE',
     msg: '',
     data: game_score
+  })
+})
+app.get('/resetGameScore',function(req,res){
+  game_score = [];
+  res.json({
+    result: 'TRUE',
+    msg: '',
+    data: '重置成功'
   })
 })
 app.post('/login',function(req, res){

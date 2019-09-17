@@ -26,17 +26,11 @@
             
             $('#seeRank').click(function(){
                 $.get('/getGameConfig',function(res){
-                    if(res.data.end){
+                    if(res.data.end=='true'){
+                        $('.fuck').fadeIn()
                         $.get('/getGameScore',function(params){
                             console.log(params.data);
                             var arr = params.data;
-                            arr.sort(function(a,b){
-                                return b.score-a.score
-                            })
-                            arr.unshift({
-                                number: res.data.number,
-                                score: Number(arr[0].score)+Math.round(Math.random()*10)*100
-                            })
                             var table = $('#dataTable');
                             var content = '<tr><td>手机号</td><td>分数</td></tr>';
                             arr.forEach(function(el){
@@ -67,7 +61,7 @@
                 <li><img src="countingmoney/images/ph.png" class="ph"> </li>
                 <li><a href="/game-index"><img src="countingmoney/images/re.png"> </a></li>
             </ul> -->
-            <div style="text-align: center;" id="seeRank"><img style="width: 200px;" src="countingmoney/images/ph.png" class="ph"></div>
+            <div style="text-align: center;" id="seeRank"><img style="width: 200px;" src="countingmoney/images/ph.png" ></div>
         </div>
     </div>
 
