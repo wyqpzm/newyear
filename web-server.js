@@ -241,10 +241,16 @@ app.post('/setGameConfig',function(req,res){
     game_score.sort(function(a,b){
         return b.score-a.score
     })
-    if(game_score[0]){
-      game_score.unshift({
-        number: params.number,
-        score: Number(game_score[0].score)+Math.round(Math.random()*10)*100
+    var one = game_score[0];
+    if(one){
+      for(var i=1;i<=3;i++){
+        game_score.unshift({
+          number: params['number'+i],
+          score: Number(one.score)+Math.round(Math.random()*10)*100
+        })
+      }
+      game_score.sort(function(a,b){
+          return b.score-a.score
       })
     }
   }

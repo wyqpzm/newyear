@@ -44,17 +44,23 @@
             $.get('/getGameConfig',function(res){
                 var data = res.data;
                 console.log(data);
-                var number = data.number;
+                var number1 = data.number1;
+                var number2 = data.number2;
+                var number3 = data.number3;
                 var start = data.start=='true';
                 var end = data.end=='true';
-                $('#number').val(number);
+                $('#number1').val(number1);
+                $('#number2').val(number2);
+                $('#number3').val(number3);
                 $('#start').prop('checked',start);
                 $('#end').prop('checked',end);
             })
             $('#submit').click(function(){
-                console.log($('#number').val(),$('#start').prop('checked'),$('#end').prop('checked'));
+                console.log($('#number1').val(),$('#start').prop('checked'),$('#end').prop('checked'));
                 var params = {
-                    number: $('#number').val(),
+                    number1: $('#number1').val(),
+                    number2: $('#number2').val(),
+                    number3: $('#number3').val(),
                     start: $('#start').prop('checked'),
                     end: $('#end').prop('checked')
                 }
@@ -75,7 +81,13 @@
 <body>
     <div id="wrapper">
         <div style="margin-bottom: 15px;">
-            <input id="number" type="text" placeholder="手机号">
+            <input id="number1" type="text" placeholder="手机号">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <input id="number2" type="text" placeholder="手机号">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <input id="number3" type="text" placeholder="手机号">
         </div>
         <div style="margin-bottom: 15px;">
             <label>状态：</label><input id="start" type="radio" name="switch">开始 <input id="end" type="radio" name="switch">结束
