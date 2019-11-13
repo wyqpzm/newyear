@@ -1,419 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width,user-scalable=no,initial-scale=1.0" name="viewport"> 
-    <title>签到</title>
-    <link rel="stylesheet" href="css/screen.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
-</head>
-<body>
-    <div id="app">
-        <div v-if="allowShow">
-            <div class="main" v-show="status=='login'">
-                <div class="bg-top">
-                    <image style="width:180px;" src="image/logo_hx.png"></image>
-                </div>
-                <div class="login-box">
-                    <div class="content">
-                        <h2 class="title">登陆</h2>
-                        <input type="text" class="input" placeholder="姓名" v-model="form.name"/>
-                        <input type="text" class="input" placeholder="学号" v-model="form.code"/>
-                        <div>
-                            <button class="btn btn-success" style="margin-top:15px;width: 100%;" :disabled="login_disabled" @click="login">{{button_text}}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="location" v-show="status=='location'">
-                <div class="clockApp">
-                    <div class="welcomePic">
-                        <img width="100%" src="image/starMorning@2x.gif" alt="">
-                    </div>
-                    <div class="mainErea">
-                        <h2 v-cloak>{{location_title}}</h2>
-                        <p class="p1" v-cloak>现在是{{time_text}}</p>
-                        <p class="p1 textFail" v-cloak>{{location_text}}<em style="color:#ff6600" v-show="distance_disabled">({{distance_warn}})</em></p> 
-                        <div id="mapErea" class="mapErea"></div> 
-                        <button class="clockBtn lg" :disabled="location_disabled||time_disabled" @click="toSign">签到</button>
-                        <a @click="goToRecords" class="clockBtn normal" style="margin-top: 14px; margin-bottom: 14px;">签到记录</a>
-                        <button id="btn_refresh" class="btn btn-default btn-sm" @click="refresh">刷新</button>
-                    </div>
-                </div>
-            </div>
-            <div class='record' v-show="status=='record'">
-                <h2 id="header_record">
-                    <div style="float:left;color:#eee;" @click="backToLocation">返回</div>
-                    签到记录
-                </h2>
-                <table class="table table-bordered">
-                    <tr>
-                        <th>日期</th>
-                        <th>签到时间</th>
-                    </tr>
-                    <tr v-for="(value,key) in sign_records">
-                        <td>{{key}}</td>
-                        <td>{{value.time}}</td>
-                    </tr>
-                </table>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>我的技术学习记录</title>
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        font-size: 62.5%;
+      }
+      body {
+        background: #393a56;
+      }
+      .phone {
+        /* position: relative;
+        width: 42.3rem;
+        height: 87.9rem;
+        padding: 10.2rem 2rem;
+        margin: 3rem auto 3rem;
+        background: #000;
+        border-radius: 5.6rem;
+        border: 0.4rem solid #b5b5b5; */
+        position: relative;
+        width: 39rem;
+        margin: 20px auto;
+        border-radius: 8px;
+        padding: 10px;
+        background: #000;
+      }
+      .phone__screen {
+        overflow: hidden;
+        position: relative;
+        width: 37.5rem;
+        height: 66.7rem;
+        background: #39425a;
+      }
+      .demo {
+        position: relative;
+        height: 100%;
+      }
+      .demo__top {
+        position: relative;
+        height: 9rem;
+        padding-top: 3rem;
+        text-align: center;
+        font-size: 0;
+        color: #ceced6;
+        text-transform: uppercase;
+      }
+      .demo__text {
+        font-size: 1.2rem;
+        margin-bottom: 1.6rem;
+      }
+      .demo__text.half {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+      }
+      .demo__body {
+        position: relative;
+        min-height: 66.7rem;
+        padding: 1.5rem;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .demo__body.reset {
+        -webkit-transition: -webkit-transform 0.5s;
+        transition: transform 0.5s;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+      }
+      .demo__body.waiting {
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
+        -webkit-transform: translate3d(0, 5rem, 0) !important;
+        transform: translate3d(0, 5rem, 0) !important;
+      }
+      .demo__svg-bg {
+        overflow: visible;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .demo__svg-bg__path {
+        fill: #fafafb;
+        stroke: transparent;
+      }
+      .demo__content.reset {
+        -webkit-transition: -webkit-transform 0.5s;
+        transition: transform 0.5s;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+      }
+      .demo__el {
+        position: relative;
+        height: 16rem;
+        margin-bottom: 2rem;
+        background: #fff;
+      }
+      .demo__el:before {
+        content: "";
+        position: absolute;
+        left: 1.5rem;
+        top: 1.5rem;
+        width: 9rem;
+        height: 9rem;
+        border-radius: 1.5rem;
+        background: #5a534f;
+      }
+      .demo__el:after {
+        content: "";
+        position: absolute;
+        left: 12rem;
+        top: 1.5rem;
+        width: 21rem;
+        height: 1.5rem;
+        border-radius: 0.7rem;
+        background: #5a534f;
+        color: #5a534f;
+        box-shadow: 0 3rem, 0 6rem;
+      }
+      .demo__svg {
+        overflow: visible;
+        position: absolute;
+        left: 0;
+        top: 8.7rem;
+        width: 100%;
+        height: 3.7rem;
+      }
+      .demo__svg__line {
+        stroke: #4eddc8;
+        stroke-dashoffset: 98.53px;
+        stroke-dasharray: 285.53px, 285.53px;
+        -webkit-transform-origin: 187px 19px;
+        -ms-transform-origin: 187px 19px;
+        transform-origin: 187px 19px;
+      }
+      .demo__svg__line.show-circle {
+        -webkit-transition: stroke-dashoffset 0.325s;
+        transition: stroke-dashoffset 0.325s;
+        stroke-dashoffset: -187px !important;
+      }
+      .demo__svg__line.rotating {
+        -webkit-animation: rotating 0.5s infinite linear;
+        animation: rotating 0.5s infinite linear;
+      }
+      .demo__svg__line.reset {
+        -webkit-transition: stroke-dashoffset 0.5s;
+        transition: stroke-dashoffset 0.5s;
+        stroke-dashoffset: 98.53px !important;
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+      }
+      .demo__svg__smile {
+        stroke: #4eddc8;
+        stroke-dashoffset: 30px;
+        stroke-dasharray: 30px, 30px;
+        -webkit-transform-origin: 187px 19px;
+        -ms-transform-origin: 187px 19px;
+        transform-origin: 187px 19px;
+        opacity: 0;
+        -webkit-transition: opacity 0.1s, stroke-dashoffset 0.5s;
+        transition: opacity 0.1s, stroke-dashoffset 0.5s;
+        -webkit-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+      }
+      .demo__svg__smile.active {
+        opacity: 1;
+        stroke-dashoffset: 0;
+      }
+      .demo__svg__smile.minified {
+        -webkit-transition: stroke-dashoffset 0.5s 0.85s, opacity 0.1s 1.25s;
+        transition: stroke-dashoffset 0.5s 0.85s, opacity 0.1s 1.25s;
+        stroke-dashoffset: 25px;
+        opacity: 0;
+        -webkit-animation: rotating 0.5s 0.35s infinite linear;
+        animation: rotating 0.5s 0.35s infinite linear;
+      }
+      @-webkit-keyframes rotating {
+        to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotating {
+        to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="phone__screen">
+        <div class="demo__top">
+          <p class="demo__text">Pull down content part</p>
+          <p class="demo__text half">Activities</p>
+          <p class="demo__text half">Saved</p>
+          <svg class="demo__svg" viewBox="0 0 375 37">
+            <path
+              class="demo__svg__line"
+              stroke-width="3"
+              fill="none"
+              d="M0,1 187,1 a18,18 0 0,1 0,36 a18,18 0 0,1 -12.6,-30.6"
+            />
+            <path
+              class="demo__svg__smile"
+              stroke-width="3"
+              fill="none"
+              d="M176.61,25 Q187,14 197.39,25"
+            />
+          </svg>
         </div>
-        <div v-if="!allowShow" style="text-align:center;padding: 10px;">
-            请在微信中打开
+        <div class="demo__body">
+          <svg class="demo__svg-bg" viewBox="0 0 375 667">
+            <path
+              class="demo__svg-bg__path"
+              d="M0,0 C125,0 250,0 375,0 S375,0 375,0 L375,667 0,667z"
+            />
+          </svg>
+          <div class="demo__content">
+            <div class="demo__el"></div>
+            <div class="demo__el"></div>
+            <div class="demo__el"></div>
+          </div>
         </div>
+      </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://webapi.amap.com/maps?v=1.4.14&key=dd65e37cecc15cc90140c9e9905f2ccd"></script> 
-    <script type="text/javascript">
-        function isWeiXin(){
-            var ua = window.navigator.userAgent.toLowerCase();
-            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
-                return true;
-            }else{
-                return false;
-            }
+    <div
+      id="beian"
+      style="text-align: center;color:#ccc;padding-bottom: 20px;"
+    ></div>
+    <script>
+      $(document).ready(function() {
+        var url = location.href;
+        if (url.indexOf("wing") > -1) {
+          $("#beian").text("蜀ICP备19033202号-1");
+        } else {
+          $("#beian").text("蜀ICP备19033202号-2");
         }
-        function zeroPad(digits, n) {
-            n = n.toString();
-            while (n.length < digits)
-                n = '0' + n;
-            return n;
-        }
-        function deg2rad(deg) {
-            return deg * (Math.PI / 180);
-        }
-        function getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) {
-            var R = 6371 * 1000;                                        // Radius of the earth in km
-            var dLat = deg2rad(lat2 - lat1);                            // deg2rad below
-            var dLon = deg2rad(lon2 - lon1);
-            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            var d = R * c;                                              // Distance in m
-            return d;
-        }
-        var mapObj,geolocation;
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                status: 'login',
-                allowShow: isWeiXin(),
-                config: {},
-                login_disabled: false,
-                location_disabled: true,
-                time_disabled: true,
-                distance_disabled: false,
-                distance_warn: '',
-                button_text: '提交',
-                form: {
-                    name: '',
-                    code: ''
-                },
-                location_title: '上课了，请签到',
-                time_text: '',
-                location_text: '正在定位...',
-                current_date: '',
-                current_time: '',
-                current_location: '',
-                sign_records: {}
-            },
-            mounted: function(){
-                var vm = this;
-                var $_GET = this.getUrlParams();
-                if(localStorage.getItem('code')){
-                    this.status = 'location';
-                    this.getTime();
-                    this.getConfig();
-                }
-                
-            },
-            methods:{
-                getTime(){
-                    var date = new Date();
-                    var date_year = date.getFullYear();
-                    var date_month = date.getMonth()+1;
-                    var date_date = date.getDate();
-                    var date_time = zeroPad(2,date.getHours())+':'+zeroPad(2,date.getMinutes())+":"+zeroPad(2,date.getSeconds());
-                    this.current_date = date_year+'-'+zeroPad(2,date_month)+'-'+zeroPad(2,date_date);
-                    this.current_time = date_time;
-                    this.time_text = ' '+date_year+'年'+date_month+'月'+date_date+'日'+' '+date_time;
-                },
-                getConfig(){
-                    var vm = this;
-                    var date = new Date();
-                    var date_year = date.getFullYear();
-                    var date_month = zeroPad(2,date.getMonth()+1);
-                    var date_date = zeroPad(2,date.getDate());
-                    
-                    axios.get('/getConfig', {
-                        params: {
-                            date: this.current_date
-                        }
-                    })
-                    .then(function (response) {
-                        console.log(response);
-                        var data = response.data;
-                        if(data.result=="TRUE"){
-                            vm.config = data.data;
-                            vm.checkTime();
-                            mapObj = new AMap.Map('mapErea',{
-                                resizeEnable: true
-                            });
-                            mapObj.plugin('AMap.Geolocation', function () {
-                                geolocation = new AMap.Geolocation({
-                                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
-                                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-                                    maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-                                    convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-                                    showButton: true,        //显示定位按钮，默认：true
-                                    buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-                                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-                                    showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-                                    showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-                                    panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-                                    zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                                });
-                                mapObj.addControl(geolocation);
-                                geolocation.getCurrentPosition();
-                                AMap.event.addListener(geolocation, 'complete', vm.locationComplete);//返回定位信息
-                                AMap.event.addListener(geolocation, 'error', vm.locationError);      //返回定位出错信息
-                            });
-                        }else{
-                            vm.location_title = data.msg;
-                        }
-                    })
-                },
-                checkTime(){
-                    console.log(this.config);
-                    this.getTime();
-                    var date = this.current_date.replace(/-/g,'/');
-                    var now_date = new Date(date+' '+this.current_time);
-                    var start_date = new Date(date+' '+this.config.time.start);
-                    var end_date = new Date(date+' '+this.config.time.end);
-                    var now = now_date.getTime();
-                    var start = start_date.getTime();
-                    var end = end_date.getTime();
-                    console.log(now,start,end);
-                    if(start<=now&&end>=now){
-                        this.location_title = '上课了，请签到';
-                        this.time_disabled = false;
-                    }else{
-                        this.location_title = '当前不在签到时间范围内';
-                        this.time_disabled = true;
-                    }
-                },
-                refresh(){
-                    this.checkTime();
-                    geolocation.getCurrentPosition();
-                },
-                login(){
-                    console.log(this.form);
-                    var name = this.form.name;
-                    var code = this.form.code;
-                    var vm = this;
-                    if(name&&code){
-                        if(isNaN(Number(code))){
-                            alert('请填写正确的学号');
-                            return false;
-                        }
-                        this.button_text = '提交中……';
-                        this.login_disabled = true;
-                        axios.post('/login', {
-                            code: code,
-                            name: name
-                        })
-                        .then(function (response) {
-                            var data = response.data;
-                            console.log(data);
-                            if(data.result=="TRUE"){
-                                localStorage.setItem("code",code);
-                                vm.status = "location";
-                                vm.getTime();
-                                vm.getConfig();
-                            }else{
-                                alert("登录失败，请重试")
-                                vm.login_disabled = false;
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                            alert("服务器连接失败，请重试")
-                            vm.login_disabled = false;
-                        });
-                    }else{
-                        alert("姓名和学号不能为空！")
-                    }
-                    
-                },
-                locationComplete: function(data){
-                    console.log("定位成功");
-                    console.log(JSON.stringify(data));
-                    this.location_text = data.formattedAddress;
-                    this.current_location = {
-                        lat: data.position.lat,
-                        lng: data.position.lng
-                    };
-                    var distance = getDistanceFromLatLonInM(data.position.lat, data.position.lng,this.config.location.lat,this.config.location.lng);
-                    console.log(distance);
-                    if(distance<500){
-                        this.distance_disabled = false;
-                        this.location_disabled = false;
-                    }else{
-                        this.distance_disabled = true;
-                        this.location_disabled = true;
-                        this.distance_warn = '超出签到范围';
-                    }
-                    // alert(distance)
-                },
-                locationError: function(data){
-                    alert(JSON.stringify(data));
-                },
-                toSign(){
-                    var vm = this;
-                    this.refresh();
-                    if(!this.time_disabled&&!this.location_disabled){
-                        this.time_disabled = true;
-                        this.location_disabled = true;
-                        axios.post('/location', {
-                            code: localStorage.getItem('code'),
-                            date: this.current_date,
-                            time: this.current_time,
-                            location: this.current_location
-                        })
-                        .then(function (response) {
-                            var data = response.data;
-                            console.log(data);
-                            if(data.result=="TRUE"){
-                                alert("签到成功")
-                                vm.goToRecords();
-                            }else{
-                                alert("签到失败，请重试")
-                                vm.time_disabled = false;
-                                vm.location_disabled = false;
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                            alert("服务器连接失败，请重试")
-                            vm.time_disabled = false;
-                            vm.location_disabled = false;
-                        });
-                    }
-                },
-                goToRecords: function(){
-                    var vm = this;
-                    this.status  = "record";
-                    axios.get('/getRecords', {
-                        params: {
-                            code: localStorage.getItem('code')
-                        }
-                    })
-                    .then(function (response) {
-                        var data = response.data;
-                        console.log(data);
-                        if(data.result=="TRUE"){
-                            vm.sign_records = data.data;
-                        }else{
-                            alert(data.msg)
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                        alert("服务器连接失败，请重试")
-                    });
-                },
-                backToLocation(){
-                    this.status  = "location";
-                },
-                getUrlParams: function () {
-                    var qs=location.search.length>0?location.search.substring(1):"";
-                    var items=qs.length>0?qs.split("&"):[];
-                    var args={};
-                    for(var i in items){
-                        var item=items[i].split("=");
-                        var name=decodeURIComponent(item[0]);
-                        var value=decodeURIComponent(item[1]);
-                        args[name]=value;
-                    }
-                    return args;
-                }
-            }
-        })    
-            // getInfo();
-            /* function getInfo(){
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', '/card', true);
-                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded;charset=UTF-8");
-                xhr.responseType = 'json';
-                xhr.onload = function () {
-                    if(xhr.status == 200){
-                        console.log(xhr.response);
-                        window.data = xhr.response;
-                        holder.style.backgroundImage = "url('img/"+data.index+"_bg@3x.png')";
-                        text.src = "img/"+data.index+"_text.svg";
-                        intro.innerHTML = data.name;
-                        for(var i = 0;i<data.brief.length;i++){
-                            var el = document.createElement("li");
-                            el.innerHTML = data.brief[i];
-                            holder_ul.appendChild(el);
-                        }
+        var animating = false;
 
-                    }else{
-                        console.error("The request status not is 200.");
-                    }
-                }
-                xhr.send();
-            }; */
-            var wxConfig = function(){
-                var url = location.href;
-                console.log(url);
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/wx', true);
-                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded;charset=UTF-8");
-                xhr.responseType = 'json';
-                xhr.onload = function () {
-                    if(xhr.status == 200){
-                        console.log(xhr.response);
-                        var data = xhr.response;
-                        wx.config({
-                            debug: true,
-                            appId: "wxf2083e95eed07c8a",
-                            timestamp: data.timestamp,
-                            nonceStr: data.nonceStr,
-                            signature: data.signature,
-                            jsApiList: ['checkJsApi','onMenuShareTimeline']
-                        });
-                        wx.ready(function() {
-                            wx.checkJsApi({
-                                jsApiList: [
-                                    'getNetworkType',
-                                    'previewImage'
-                                ],
-                                success: function(res) {
-                                    console.log(JSON.stringify(res));
-                                }
-                            });
+        var $body = $(".demo__body");
+        var $content = $(".demo__content");
+        var $line = $(".demo__svg__line");
+        var $smile = $(".demo__svg__smile");
+        var $bgPath = $(".demo__svg-bg__path");
 
-                            //分享到朋友圈
-                            wx.onMenuShareTimeline({
-                                title: '新年福签',
-                                desc: '我抽取到中建西南院的新年福签是'+data.title,
-                                link: url,
-                                imgUrl: 'img/home_fu@3x.png'
-                            });
+        var resetD = "M0,0 C125,0 250,0 375,0 S375,0 375,0 L375,667 0,667z";
+        var smileInit = "M176.61,25 Q187,19 197.39,25";
+        var smileMid = "M176.61,25 Q187,25 197.39,25";
+        var smileEnd = "M176.61,25 Q187,34 197.39,25";
 
-                        });
-                    }else{
-                        console.error("The request status not is 200.");
-                    }
-                }
-                xhr.send("url="+url);
-                    
-            };
+        var totalLen = $line[0].getTotalLength();
+        var upperLen = 187;
+        var circleLen = totalLen - upperLen;
+        var minLineLen = 60;
+        var lineDragBoundries = upperLen - minLineLen;
+
+        var pullDeltaY = 0;
+        var pullSlowCoef = 1.2;
+        var maxPullY = 150;
+        var minReleaseY = 120;
+        var contentYCoef = 0.4;
+        var maxContentY = maxPullY * contentYCoef;
+        var bodyOffsetX = 0;
+        var bodyW = $body.outerWidth();
+
+        var resetAT = 500;
+        var releaseStep1AT = 800;
+        var releaseWaitTime = 3000;
+
+        var easings = {
+          elastic: function(t, b, c, d) {
+            var ts = (t /= d) * t;
+            var tc = ts * t;
+            return (
+              b +
+              c * (33 * tc * ts + -106 * ts * ts + 126 * tc + -67 * ts + 15 * t)
+            );
+          },
+          inCubic: function(t, b, c, d) {
+            var tc = (t /= d) * t * t;
+            return b + c * tc;
+          }
+        };
+
+        function SvgAddClass(el, cl) {
+          var regEx = new RegExp("(?:^|\\s)" + cl + "(?!\\S)", "gi");
+          if (regEx.test(el.attr("class"))) return;
+          el.attr("class", el.attr("class") + " " + cl);
+        }
+
+        function SvgRemoveClass(el, cl) {
+          var regEx = new RegExp("(?:^|\\s)" + cl + "(?!\\S)", "gi");
+          el.attr("class", el.attr("class").replace(regEx, ""));
+        }
+
+        function SvgPathTween(from, to, time, easing) {
+          var regex = /\d+(\.\d{1,2})?/g;
+          var fromD = from.attr("d");
+          var fm = fromD.match(regex);
+          var tm = to.match(regex);
+          var diff = [];
+          for (var i = 0; i < fm.length; i++) {
+            diff.push(+fm[i] - +tm[i]);
+          }
+          var time = time || 600;
+          var curFrame = 0;
+          var frames = (time / 1000) * 60;
+          var easing = easing || "elastic";
+
+          function animate() {
+            if (curFrame > frames) return;
+            var i = 0;
+            var newD = fromD.replace(regex, function(m) {
+              if (
+                +m === 0 || // if nothing changed - skip
+                i % 2 === 0
+              ) {
+                // in this demo I want to animate only y values
+                i++;
+                return m;
+              }
+              return +easings[easing](
+                curFrame,
+                +fm[i],
+                0 - diff[i++],
+                frames
+              ).toFixed(2);
+            });
+            from.attr("d", newD);
+            curFrame++;
+            requestAnimationFrame(animate);
+          }
+
+          animate();
+        }
+
+        function pullChange(y, x) {
+          var pullY = y <= maxPullY ? y : maxPullY;
+          if (pullY < 0) pullY = 0;
+          var pullCoef = pullY / maxPullY;
+          var sdo = circleLen + pullCoef * lineDragBoundries;
+          var pullYCont = +(pullY * contentYCoef).toFixed(2);
+          var bodyX = parseInt(x - bodyOffsetX, 10);
+          if (bodyX < 0) bodyX = 0;
+          if (bodyX > bodyW) bodyX = bodyW;
+          var leftX = bodyX - 50;
+          if (leftX < 0) leftX = 0;
+          var rightX = bodyX + 50;
+          if (rightX > bodyW) rightX = bodyW;
+
+          $body.css("transform", "translate3d(0," + pullY + "px,0)");
+          $content.css("transform", "translate3d(0," + pullYCont + "px,0)");
+          $line.css("stroke-dashoffset", sdo);
+
+          $bgPath.attr(
+            "d",
+            "M0,0 C" +
+              (leftX - 25) +
+              ",0 " +
+              leftX +
+              "," +
+              pullYCont +
+              " " +
+              bodyX +
+              "," +
+              pullYCont +
+              " S" +
+              (rightX + 25) +
+              ",0 375,0 L375,667 0,667z"
+          );
+        }
+
+        function reset() {
+          $body.addClass("reset");
+          $content.addClass("reset");
+          SvgAddClass($line, "reset");
+          SvgPathTween($bgPath, resetD);
+
+          setTimeout(function() {
+            $body.removeClass("reset").attr("style", "");
+            $content.removeClass("reset").attr("style", "");
+            SvgRemoveClass($line, "reset");
+            $line.attr("style", "");
+            animating = false;
+          }, resetAT);
+        }
+
+        function performMagic() {
+          $body.addClass("waiting");
+          SvgAddClass($line, "show-circle");
+          SvgPathTween($bgPath, resetD);
+          $content.addClass("reset");
+
+          setTimeout(function() {
+            SvgAddClass($line, "rotating");
+          }, releaseStep1AT * 0.32);
+
+          setTimeout(function() {
+            $content.removeClass("reset").attr("style", "");
+
+            SvgAddClass($smile, "active");
+
+            setTimeout(function() {
+              SvgPathTween($smile, smileMid, 300, "inCubic");
+
+              setTimeout(function() {
+                SvgPathTween($smile, smileEnd, 300, "inCubic");
+
+                SvgAddClass($smile, "minified");
+              }, 500);
+            }, 700);
+          }, resetAT);
+
+          setTimeout(function() {
+            SvgRemoveClass($line, "rotating");
+            SvgRemoveClass($line, "show-circle");
+            SvgAddClass($line, "reset");
+            $body.removeClass("waiting").addClass("reset");
+
+            setTimeout(function() {
+              $body.removeClass("reset").attr("style", "");
+              SvgRemoveClass($line, "reset");
+              $line.attr("style", "");
+              SvgRemoveClass($smile, "minified");
+              SvgRemoveClass($smile, "active");
+              SvgPathTween($smile, smileInit, 50, "inCubic");
+              animating = false;
+            }, resetAT);
+          }, releaseWaitTime);
+        }
+
+        function release() {
+          animating = true;
+          if (pullDeltaY < minReleaseY) {
+            reset();
+          } else {
+            performMagic();
+          }
+        }
+
+        $(document).on("mousedown touchstart", ".demo__body", function(e) {
+          if (animating) return;
+          var startY = e.pageY || e.originalEvent.touches[0].pageY;
+          bodyOffsetX = $body.offset().left;
+
+          $(document).on("mousemove touchmove", function(e) {
+            var y = e.pageY || e.originalEvent.touches[0].pageY;
+            var x = e.pageX || e.originalEvent.touches[0].pageX;
+            pullDeltaY = (y - startY) / pullSlowCoef;
+            if (!pullDeltaY) return;
+            pullChange(pullDeltaY, x);
+          });
+
+          $(document).on("mouseup touchend", function() {
+            $(document).off("mousemove touchmove mouseup touchend");
+            if (!pullDeltaY) return;
+            release();
+          });
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
