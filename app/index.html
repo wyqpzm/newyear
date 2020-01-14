@@ -207,6 +207,9 @@
           transform: rotate(360deg);
         }
       }
+      #beian a {
+        color: #fff;
+      }
     </style>
     <script
       src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -259,9 +262,13 @@
       $(document).ready(function() {
         var url = location.href;
         if (url.indexOf("wing") > -1) {
-          $("#beian").text("蜀ICP备19033202号-1");
+          $("#beian").html(
+            "<a href='http://www.beian.miit.gov.cn'>蜀ICP备19033202号-1</a>"
+          );
         } else {
-          $("#beian").text("蜀ICP备19033202号-2");
+          $("#beian").html(
+            "<a href='http://www.beian.miit.gov.cn'>蜀ICP备19033202号-2</a>"
+          );
         }
         var animating = false;
 
